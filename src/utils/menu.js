@@ -1,5 +1,10 @@
 import icons from "./icons";
-const { MdOutlineLibraryMusic } = icons;
+const {
+  MdOutlineLibraryMusic,
+  GrEmptyCircle,
+  MdOutlineMultilineChart,
+  MdOutlineFeed,
+} = icons;
 
 export const sidebarMenu = [
   {
@@ -11,19 +16,19 @@ export const sidebarMenu = [
   {
     path: "",
     text: "Khám phá",
-    icons: <MdOutlineLibraryMusic size={24} />,
+    icons: <GrEmptyCircle size={24} />,
     end: true,
   },
   {
     path: "zing-chart",
     text: "zingchart",
-    icons: <MdOutlineLibraryMusic size={24} />,
+    icons: <MdOutlineMultilineChart size={24} />,
     end: true,
   },
   {
     path: "follow",
     text: "Theo dõi",
-    icons: <MdOutlineLibraryMusic size={24} />,
+    icons: <MdOutlineFeed size={24} />,
     end: true,
   },
 ];
