@@ -16,7 +16,7 @@ const Header = () => {
             <BsArrowRight size={24} />
           </span>
         </div>
-        <div className="w-1/2">
+        <div className="w-3/5">
           <Search />
         </div>
       </div>

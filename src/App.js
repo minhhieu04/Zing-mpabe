@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux"; // useSelector: Láº¥y dá
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Home, Login, Public } from "./containers/public/";
-import path from "./ultils/path";
+import path from "./utils/path";
 import { Routes, Route } from "react-router-dom";
 
 function App() {
