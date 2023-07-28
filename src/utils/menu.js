@@ -8,7 +8,7 @@ const {
 
 export const sidebarMenu = [
   {
-    path: "personal",
+    path: "mymusic",
     text: "Cá nhân",
     icons: <MdOutlineLibraryMusic size={24} />,
     end: true,

@@ -2,16 +2,18 @@
 import { useSelector, useDispatch } from "react-redux"; // useSelector: Lấy dữ liệu từ redux, useDispatch: mang actions tới redux
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Home, Login, Public } from "./containers/public/";
+import { Home, Login, Public, Personal } from "./containers/public/";
 import path from "./utils/path";
 import { Routes, Route } from "react-router-dom";
+import { useEffect } from "react";
+import * as actions from "./store/actions";
 
 function App() {
-  // biến state: Đại diện cho các giá trị trong store mà trước đó mình lưu trữ
-  const { test, homeData } = useSelector((state) => state.app);
-  console.log(
-    homeData.join(", ").replace("see you again", "hẹn gặp lại bạn").split(", ")
-  );
+  // tham số state: Đại diện cho các giá trị trong store mà trước đó mình lưu trữ
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(actions.getHome());
+  }, []);
   return (
     <>
       <div>
@@ -19,6 +21,7 @@ function App() {
           <Route path={path.PUBLIC} element={<Public />}>
             <Route path={path.HOME} element={<Home />} />
             <Route path={path.LOGIN} element={<Login />} />
+            <Route path={path.MY_MUSIC} element={<Personal />} />
 
             <Route path={path.START} element={<Home />} />
           </Route>

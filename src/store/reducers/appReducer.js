@@ -1,14 +1,20 @@
 import actionTypes from "../actions/actionTypes";
 
 const initState = {
-  homeData: ["We don't talk anymore", "see you again", "superman Can Tho"],
-  test: "hello",
+  // homeData: ["We don't talk anymore", "see you again", "superman Can Tho"],
+  // test: "hello",
+  banner: [],
 };
 
 const appReducer = (state = initState, action) => {
   switch (action.type) {
     case actionTypes.GET_HOME:
-      return state;
+      return {
+        ...state,
+        banner:
+          action.homeData?.find((item) => item.sectionType === "banner")
+            ?.items || null,
+      };
 
     default:
       return state;
