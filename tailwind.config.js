@@ -82,6 +82,9 @@ module.exports = {
         dropdown: "dropdown 0.5s ease both",
       },
     },
+    screens: {
+      1600: "1600px",
+    },
   },
   plugins: [],
 };

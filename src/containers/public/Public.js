@@ -4,15 +4,15 @@ import { SidebarLeft, SidebarRight, Player } from "../../components";
 
 const Public = () => {
   return (
-    <div className="w-full flex bg-main-300 flex-col">
+    <div className="w-full h-screen relative flex bg-main-300 flex-col">
       <div className="w-full h-full flex flex-auto">
-        <div className="w-[240px] min-h-screen flex-none border border-blue-500">
+        <div className="w-[240px] flex-none border border-blue-500">
           <SidebarLeft />
         </div>
         <div className="flex-auto border border-red-400">
           <Outlet />
         </div>
-        <div className="w-[329px] flex-none border border-green-400">
+        <div className="w-[329px] hidden 1600:flex flex-none border border-green-400 animate-slide-left">
           <SidebarRight />
         </div>
       </div>
