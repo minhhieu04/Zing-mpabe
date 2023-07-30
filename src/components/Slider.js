@@ -13,17 +13,21 @@ const Slider = () => {
       const list = getArrSlider(min, max, sliderEls.length - 1);
 
       for (let i = 0; i < sliderEls.length; i++) {
-        sliderEls[i].classList.remove(
+        sliderEls[i]?.classList?.remove(
           "animate-slide-right",
           "order-last",
           "z-10"
         );
-        sliderEls[i].classList.remove(
+        sliderEls[i]?.classList?.remove(
           "animate-slide-left",
           "order-first",
           "z-0"
         );
-        sliderEls[i].classList.remove("animate-slide-left2", "order-2", "z-0");
+        sliderEls[i]?.classList?.remove(
+          "animate-slide-left2",
+          "order-2",
+          "z-0"
+        );
 
         if (list.some((item) => item === i)) {
           sliderEls[i].style.cssText = `display: block`;
@@ -33,19 +37,19 @@ const Slider = () => {
       }
       list.forEach((item) => {
         if (item === max) {
-          sliderEls[max].classList.add(
+          sliderEls[max]?.classList?.add(
             "animate-slide-right",
             "order-last",
             "z-10"
           );
         } else if (item === min) {
-          sliderEls[min].classList.add(
+          sliderEls[min]?.classList?.add(
             "animate-slide-left",
             "order-first",
             "z-0"
           );
         } else {
-          sliderEls[item].classList.add(
+          sliderEls[item]?.classList?.add(
             "animate-slide-left2",
             "order-2",
             "z-0"
