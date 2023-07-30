@@ -4,7 +4,7 @@ import { SidebarLeft, SidebarRight, Player } from "../../components";
 
 const Public = () => {
   return (
-    <div className="w-full flex bg-[#ced9d9] flex-col">
+    <div className="w-full flex bg-main-300 flex-col">
       <div className="w-full h-full flex flex-auto">
         <div className="w-[240px] min-h-screen flex-none border border-blue-500">
           <SidebarLeft />
