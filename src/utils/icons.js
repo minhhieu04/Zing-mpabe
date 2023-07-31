@@ -4,7 +4,13 @@ import {
   MdOutlineFeed,
 } from "react-icons/md";
 import { GrEmptyCircle } from "react-icons/gr";
-import { BsArrowLeft, BsArrowRight, BsSearchHeart } from "react-icons/bs";
+import {
+  BsArrowLeft,
+  BsArrowRight,
+  BsSearchHeart,
+  BsThreeDots,
+} from "react-icons/bs";
+import { IoMdHeartEmpty, IoMdHeart } from "react-icons/io";
 
 const icons = {
   MdOutlineLibraryMusic,
@@ -14,5 +20,8 @@ const icons = {
   BsArrowLeft,
   BsArrowRight,
   BsSearchHeart,
+  IoMdHeartEmpty,
+  IoMdHeart,
+  BsThreeDots,
 };
 export default icons;
