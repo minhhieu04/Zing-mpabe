@@ -2,6 +2,8 @@ import {
   MdOutlineLibraryMusic,
   MdOutlineMultilineChart,
   MdOutlineFeed,
+  MdSkipNext,
+  MdSkipPrevious,
 } from "react-icons/md";
 import { GrEmptyCircle } from "react-icons/gr";
 import {
@@ -11,6 +13,12 @@ import {
   BsThreeDots,
 } from "react-icons/bs";
 import { IoMdHeartEmpty, IoMdHeart } from "react-icons/io";
+import {
+  PiRepeatLight,
+  PiPauseCircleLight,
+  PiPlayCircleLight,
+} from "react-icons/pi";
+import { RxShuffle } from "react-icons/rx";
 
 const icons = {
   MdOutlineLibraryMusic,
@@ -23,5 +31,11 @@ const icons = {
   IoMdHeartEmpty,
   IoMdHeart,
   BsThreeDots,
+  PiRepeatLight,
+  RxShuffle,
+  MdSkipNext,
+  MdSkipPrevious,
+  PiPauseCircleLight,
+  PiPlayCircleLight,
 };
 export default icons;
