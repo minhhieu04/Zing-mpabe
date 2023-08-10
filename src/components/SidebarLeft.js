@@ -1,7 +1,8 @@
 import React from "react";
 import logo from "../assets/logo.svg";
 import { sidebarMenu } from "../utils/menu";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import path from "../utils/path";
 
 const notActiveStyle =
   "py-2 px-[25px] font-bold flex gap-3 text-[#32323D] text-[13px]";
@@ -9,9 +10,13 @@ const activeStyle =
   "py-2 px-[25px] font-bold flex gap-3 text-[#4e9494] text-[13px]";
 
 const SidebarLeft = () => {
+  const navigate = useNavigate(true);
   return (
     <div className="flex h-full flex-col bg-main-200">
-      <div className="w-full h-[70px] py-[15px] px-[25px] flex justify-start items-center">
+      <div
+        onClick={() => navigate(path.HOME)}
+        className="w-full h-[70px] py-[15px] px-[25px] flex justify-start items-center cursor-pointer"
+      >
         <img src={logo} alt="logo" className="w-[120px] h-10" />
       </div>
       <div className="flex flex-col">

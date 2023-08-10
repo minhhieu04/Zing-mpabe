@@ -15,14 +15,17 @@ const {
 } = icons;
 
 const Player = () => {
+  // const [isPlaying, setIsPlaying] = useState(true);
   const { curSongId, isPlaying } = useSelector((state) => state.music);
-
+  console.log(curSongId);
   const [songInfo, setSongInfo] = useState(null);
-  const handleClickToggleButton = () => {};
+  const handleClickToggleButton = () => {
+    // setIsPlaying((prev) => !prev);
+  };
 
   useEffect(() => {
     const fetchDataSong = async () => {
-      const response = await apis.getDetailSong(curSongId);
+      const response = await apis.apiGetDetailSong(curSongId);
       if (response.data.err === 0) {
         setSongInfo(response.data.data);
       }

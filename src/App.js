@@ -2,7 +2,7 @@
 import { useSelector, useDispatch } from "react-redux"; // useSelector: Lấy dữ liệu từ redux, useDispatch: mang actions tới redux
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Home, Login, Public, Personal } from "./containers/public/";
+import { Home, Login, Public, Personal, Album } from "./containers/public/";
 import path from "./utils/path";
 import { Routes, Route } from "react-router-dom";
 import { useEffect } from "react";
@@ -22,6 +22,7 @@ function App() {
             <Route path={path.HOME} element={<Home />} />
             <Route path={path.LOGIN} element={<Login />} />
             <Route path={path.MY_MUSIC} element={<Personal />} />
+            <Route path={path.ALBUM__TITLE__PID} element={<Album />} />
 
             <Route path={path.START} element={<Home />} />
           </Route>
