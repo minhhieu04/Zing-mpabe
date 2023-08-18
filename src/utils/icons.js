@@ -20,6 +20,7 @@ import {
   PiMusicNotesSimple,
 } from "react-icons/pi";
 import { RxShuffle } from "react-icons/rx";
+import { BiSortAlt2 } from "react-icons/bi";
 
 const icons = {
   MdOutlineLibraryMusic,
@@ -39,5 +40,6 @@ const icons = {
   PiPauseCircleLight,
   PiPlayCircleLight,
   PiMusicNotesSimple,
+  BiSortAlt2,
 };
 export default icons;

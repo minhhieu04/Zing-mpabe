@@ -44,7 +44,7 @@ const Album = () => {
         </div>
       </div>
       <div className="flex-auto">
-        <span className="text-sm">
+        <span className="text-sm flex gap-1">
           <span className="text-gray-600 ">Lời tựa</span>
           <span>{playlistData?.sortDescription}</span>
         </span>
