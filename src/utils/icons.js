@@ -17,6 +17,7 @@ import {
   PiRepeatLight,
   PiPauseCircleLight,
   PiPlayCircleLight,
+  PiMusicNotesSimple,
 } from "react-icons/pi";
 import { RxShuffle } from "react-icons/rx";
 
@@ -37,5 +38,6 @@ const icons = {
   MdSkipPrevious,
   PiPauseCircleLight,
   PiPlayCircleLight,
+  PiMusicNotesSimple,
 };
 export default icons;

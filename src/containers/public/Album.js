@@ -49,8 +49,8 @@ const Album = () => {
           <span>{playlistData?.sortDescription}</span>
         </span>
         <Lists
-          songs={playlistData?.song.items}
-          totalDuration={playlistData?.song.totalDuration}
+          songs={playlistData?.song?.items}
+          totalDuration={playlistData?.song?.totalDuration}
         />
       </div>
     </div>

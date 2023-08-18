@@ -1,7 +1,36 @@
-import React from "react";
+import React, { memo } from "react";
+import icons from "../utils/icons";
+import moment from "moment";
+
+const { PiMusicNotesSimple } = icons;
 
 const List = ({ songData }) => {
-  return <div>Ahiih</div>;
+  return (
+    <div className="flex justify-between items-center p-[10px]">
+      <div className="flex items-center gap-3 flex-1">
+        <span>
+          <PiMusicNotesSimple />
+        </span>
+        <img
+          src={songData?.thumbnail}
+          alt="thumbnail"
+          className="w-10 h-10 object-cover rounded-md"
+        ></img>
+        <span className="flex flex-col">
+          <span className="text-sm font-semibold">
+            {songData?.title.length >= 30
+              ? `${songData?.title.slice(0, 25)}...`
+              : songData?.title}
+          </span>
+          <span className="text-[12px]">{songData?.artistsNames}</span>
+        </span>
+      </div>
+      <div className="flex-1 flex justify-center">{songData?.album?.title}</div>
+      <div className="flex-1 flex justify-end">
+        {moment.utc(songData?.duration * 1000).format("mm:ss")}
+      </div>
+    </div>
+  );
 };
 
-export default List;
+export default memo(List);

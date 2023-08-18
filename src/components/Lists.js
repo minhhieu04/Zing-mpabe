@@ -1,13 +1,13 @@
-import React from "react";
+import React, { memo } from "react";
 import { List } from "./";
 
 const Lists = ({ songs, totalDuration }) => {
   return (
     <div className="w-full flex flex-col ">
       <div className="flex justify-between items-center p-[10px] font-semibold text-gray-500">
-        <span>BÀI HÁT</span>
-        <span>ALBUM</span>
-        <span>THỜI GIAN</span>
+        <span className="flex-1">BÀI HÁT</span>
+        <span className="flex-1 flex justify-center">ALBUM</span>
+        <span className="flex-1 flex justify-end">THỜI GIAN</span>
       </div>
       <div className="flex flex-col">
         {songs?.map((item) => (
@@ -18,4 +18,4 @@ const Lists = ({ songs, totalDuration }) => {
   );
 };
 
-export default Lists;
+export default memo(Lists);
