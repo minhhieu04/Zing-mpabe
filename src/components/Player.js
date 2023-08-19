@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect, useState, useRef } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import * as apis from "../apis";
 import icons from "../utils/icons";
+import * as actions from "../store/actions";
 
 const {
   IoMdHeartEmpty,
@@ -15,23 +16,59 @@ const {
 } = icons;
 
 const Player = () => {
+  const audioEL = useRef(new Audio());
   // const [isPlaying, setIsPlaying] = useState(true);
   const { curSongId, isPlaying } = useSelector((state) => state.music);
-  console.log(curSongId);
   const [songInfo, setSongInfo] = useState(null);
-  const handleClickToggleButton = () => {
-    // setIsPlaying((prev) => !prev);
-  };
+  const [source, setSource] = useState(null);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    const fetchDataSong = async () => {
-      const response = await apis.apiGetDetailSong(curSongId);
-      if (response.data.err === 0) {
-        setSongInfo(response.data.data);
+    const fetchDetailSong = async () => {
+      const [res1, res2] = await Promise.all([
+        apis.apiGetDetailSong(curSongId),
+        apis.apiGetSong(curSongId),
+      ]);
+      if (res1.data.err === 0) {
+        setSongInfo(res1.data.data);
       }
+      if (res2.data.err === 0) {
+        setSource(res2.data.data["128"]);
+      }
+      // } else {
+      //     dispatch(actions.play(false))
+      //     setAudio(new Audio())
+      //     toast.info(res2.data.msg)
+      // }
     };
-    fetchDataSong();
+
+    fetchDetailSong();
   }, [curSongId]);
+
+  useEffect(() => {
+    audioEL.current.src = source;
+    if (isPlaying) audioEL.current.play();
+  }, [curSongId, source]);
+
+  const handleClickToggleButton = () => {
+    if (isPlaying) {
+      audioEL.current.pause();
+      dispatch(actions.play(false));
+    } else {
+      audioEL.current.play();
+      dispatch(actions.play(true));
+    }
+  };
+
+  // useEffect(() => {
+  //   const fetchDataSong = async () => {
+  //     const response = await apis.apiGetDetailSong(curSongId);
+  //     if (response.data.err === 0) {
+  //       setSongInfo(response.data.data);
+  //     }
+  //   };
+  //   fetchDataSong();
+  // }, [curSongId]);
 
   return (
     <div className="bg-main-400 h-full px-5 flex">
@@ -71,9 +108,9 @@ const Player = () => {
             className="text-[40px] cursor-pointer text-main-500"
           >
             {isPlaying ? (
-              <PiPlayCircleLight size={50} />
-            ) : (
               <PiPauseCircleLight size={50} />
+            ) : (
+              <PiPlayCircleLight size={50} />
             )}
           </span>
           <span className="cursor-pointer">
