@@ -1,8 +1,9 @@
 import React, { memo } from "react";
 import { List } from "./";
 import icons from "../utils/icons";
+import moment from "moment";
 
-const { BiSortAlt2 } = icons;
+const { BiSortAlt2, BsDot } = icons;
 
 const Lists = ({ songs, totalDuration }) => {
   return (
@@ -18,10 +19,17 @@ const Lists = ({ songs, totalDuration }) => {
         <span className="flex-1 flex justify-end">THỜI GIAN</span>
       </div>
       <div className="flex flex-col">
-        {songs?.map((item) => (
+        {songs?.items.map((item) => (
           <List key={item?.encodeId} songData={item} />
         ))}
       </div>
+      <span className="flex items-center gap-1 py-[10px] border-t border-[rgba(0,0,0,0.05)]">
+        <span>{`${songs?.total} bài hát`}</span>
+        <span>
+          <BsDot size={24} />
+        </span>
+        <span>{moment.utc(totalDuration * 1000).format("HH:mm:ss")}</span>
+      </span>
     </div>
   );
 };

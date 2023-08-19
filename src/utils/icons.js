@@ -11,6 +11,7 @@ import {
   BsArrowRight,
   BsSearchHeart,
   BsThreeDots,
+  BsDot,
 } from "react-icons/bs";
 import { IoMdHeartEmpty, IoMdHeart } from "react-icons/io";
 import {
@@ -41,5 +42,6 @@ const icons = {
   PiPlayCircleLight,
   PiMusicNotesSimple,
   BiSortAlt2,
+  BsDot,
 };
 export default icons;
