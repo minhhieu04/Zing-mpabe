@@ -32,7 +32,9 @@ const List = ({ songData }) => {
               ? `${songData?.title.slice(0, 25)}...`
               : songData?.title}
           </span>
-          <span className="text-[12px]">{songData?.artistsNames}</span>
+          <span className="text-xs text-gray-500">
+            {songData?.artistsNames}
+          </span>
         </span>
       </div>
       <div className="flex-1 flex justify-center text-xs text-gray-500">
@@ -40,7 +42,7 @@ const List = ({ songData }) => {
           ? `${songData?.album?.title.slice(0, 30)}...`
           : songData?.album?.title}
       </div>
-      <div className="flex-1 flex justify-end">
+      <div className="flex-1 flex justify-end text-xs text-gray-500">
         {moment.utc(songData?.duration * 1000).format("mm:ss")}
       </div>
     </div>

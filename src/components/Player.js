@@ -50,7 +50,7 @@ const Player = () => {
     if (isPlaying) audioEL.current.play();
   }, [curSongId, source]);
 
-  const handleClickToggleButton = () => {
+  const handleClickToggleButton = async () => {
     if (isPlaying) {
       audioEL.current.pause();
       dispatch(actions.play(false));
