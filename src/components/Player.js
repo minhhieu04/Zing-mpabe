@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import * as apis from "../apis";
 import icons from "../utils/icons";
 import * as actions from "../store/actions";
+import moment from "moment";
 
 const {
   IoMdHeartEmpty,
@@ -14,13 +15,15 @@ const {
   MdSkipPrevious,
   PiRepeatLight,
 } = icons;
+var intervalId;
 
 const Player = () => {
-  const audioEL = useRef(new Audio());
   // const [isPlaying, setIsPlaying] = useState(true);
   const { curSongId, isPlaying } = useSelector((state) => state.music);
   const [songInfo, setSongInfo] = useState(null);
-  const [source, setSource] = useState(null);
+  const [audio, setAudio] = useState(new Audio());
+  const [currentSecond, setCurrentSecond] = useState(0);
+  const thumbRef = useRef();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -33,7 +36,8 @@ const Player = () => {
         setSongInfo(res1.data.data);
       }
       if (res2.data.err === 0) {
-        setSource(res2.data.data["128"]);
+        audio.pause();
+        setAudio(new Audio(res2.data.data["128"]));
       }
       // } else {
       //     dispatch(actions.play(false))
@@ -46,29 +50,32 @@ const Player = () => {
   }, [curSongId]);
 
   useEffect(() => {
-    audioEL.current.src = source;
-    if (isPlaying) audioEL.current.play();
-  }, [curSongId, source]);
+    if (isPlaying) {
+      intervalId = setInterval(() => {
+        let percent =
+          Math.round((audio.currentTime * 10000) / songInfo.duration) / 100;
+        thumbRef.current.style.cssText = `right: ${100 - percent}%`;
+        setCurrentSecond(Math.round((percent * songInfo.duration) / 100));
+      }, 100);
+    } else {
+      intervalId && clearInterval(intervalId);
+    }
+  }, [isPlaying]);
+
+  useEffect(() => {
+    audio.load();
+    if (isPlaying) audio.play();
+  }, [audio]);
 
   const handleClickToggleButton = async () => {
     if (isPlaying) {
-      audioEL.current.pause();
+      audio.pause();
       dispatch(actions.play(false));
     } else {
-      audioEL.current.play();
+      audio.play();
       dispatch(actions.play(true));
     }
   };
-
-  // useEffect(() => {
-  //   const fetchDataSong = async () => {
-  //     const response = await apis.apiGetDetailSong(curSongId);
-  //     if (response.data.err === 0) {
-  //       setSongInfo(response.data.data);
-  //     }
-  //   };
-  //   fetchDataSong();
-  // }, [curSongId]);
 
   return (
     <div className="bg-main-400 h-full px-5 flex">
@@ -120,7 +127,18 @@ const Player = () => {
             <PiRepeatLight size={24} />
           </span>
         </div>
-        <div>progress bar</div>
+        <div className="w-full flex items-center gap-3 justify-center text-xs">
+          <span className="">
+            {moment.utc(currentSecond * 1000).format("mm:ss")}
+          </span>
+          <div className="w-3/4 h-[3px] rounded-l-full rounded-r-full bg-[rgba(0,0,0,0.1)] relative">
+            <div
+              ref={thumbRef}
+              className="absolute top-0 left-0 h-[3px] rounded-l-full rounded-r-full bg-[#0e8080]"
+            ></div>
+          </div>
+          <span>{moment.utc(songInfo?.duration * 1000).format("mm:ss")}</span>
+        </div>
       </div>
       <div className="w-[30%] flex-auto">Volume</div>
     </div>
