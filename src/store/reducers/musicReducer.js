@@ -1,8 +1,10 @@
+import { MdAccessAlarm } from "react-icons/md";
 import actionTypes from "../actions/actionTypes";
 
 const initState = {
   curSongId: null,
   isPlaying: false,
+  songs: null,
 };
 
 const musicReducer = (state = initState, action) => {
@@ -16,6 +18,11 @@ const musicReducer = (state = initState, action) => {
       return {
         ...state,
         isPlaying: action.flag,
+      };
+    case actionTypes.PLAYLIST:
+      return {
+        ...state,
+        songs: action.songs || null,
       };
 
     default:

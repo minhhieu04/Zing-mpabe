@@ -2,10 +2,12 @@ import React, { memo } from "react";
 import { List } from "./";
 import icons from "../utils/icons";
 import moment from "moment";
+import { useSelector } from "react-redux";
 
 const { BiSortAlt2, BsDot } = icons;
 
-const Lists = ({ songs, totalDuration }) => {
+const Lists = ({ totalDuration }) => {
+  const { songs } = useSelector((state) => state.music);
   return (
     <div className="w-full flex flex-col ">
       <div className="flex justify-between items-center p-[10px] font-semibold text-gray-500">
@@ -19,12 +21,12 @@ const Lists = ({ songs, totalDuration }) => {
         <span className="flex-1 flex justify-end">THỜI GIAN</span>
       </div>
       <div className="flex flex-col">
-        {songs?.items.map((item) => (
+        {songs?.map((item) => (
           <List key={item?.encodeId} songData={item} />
         ))}
       </div>
       <span className="flex items-center gap-1 py-[10px] border-t border-[rgba(0,0,0,0.05)]">
-        <span>{`${songs?.total} bài hát`}</span>
+        <span>{`${songs?.length} bài hát`}</span>
         <span>
           <BsDot size={24} />
         </span>

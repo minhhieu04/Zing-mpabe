@@ -20,7 +20,7 @@ var intervalId;
 
 const Player = () => {
   // const [isPlaying, setIsPlaying] = useState(true);
-  const { curSongId, isPlaying } = useSelector((state) => state.music);
+  const { curSongId, isPlaying, songs } = useSelector((state) => state.music);
   const [songInfo, setSongInfo] = useState(null);
   const [audio, setAudio] = useState(new Audio());
   const [currentSecond, setCurrentSecond] = useState(0);
@@ -41,6 +41,7 @@ const Player = () => {
         audio.pause();
         setAudio(new Audio(res2.data.data["128"]));
       } else {
+        audio.pause();
         setAudio(new Audio());
         dispatch(actions.play(false));
         toast.warn(res2.data.msg);
@@ -87,6 +88,31 @@ const Player = () => {
     console.log(percent);
   };
 
+  const handleClickButtonNext = () => {
+    if (songs) {
+      let currentSongIndex;
+      songs?.forEach((song, index) => {
+        if (song.encodeId === curSongId) {
+          currentSongIndex = index;
+        }
+      });
+      dispatch(actions.setCurSongId(songs[currentSongIndex + 1].encodeId));
+      dispatch(actions.play(true));
+    }
+  };
+  const handleClickButtonPre = () => {
+    if (songs) {
+      let currentSongIndex;
+      songs?.forEach((song, index) => {
+        if (song.encodeId === curSongId) {
+          currentSongIndex = index;
+        }
+      });
+      dispatch(actions.setCurSongId(songs[currentSongIndex - 1].encodeId));
+      dispatch(actions.play(true));
+    }
+  };
+
   return (
     <div className="bg-main-400 h-full px-5 flex">
       <div className="w-[30%] flex-auto flex items-center gap-3">
@@ -113,16 +139,19 @@ const Player = () => {
         </div>
       </div>
       <div className="w-[40%] flex-auto flex flex-col justify-center gap-2 items-center py-1">
-        <div className="flex gap-8 justify-center items-center cursor-pointer">
+        <div className="flex gap-8 justify-center items-center">
           <span className="cursor-pointer" title="Bật phát ngẫu nhiên">
             <RxShuffle size={24} />
           </span>
-          <span className="cursor-pointer">
+          <span
+            className={`${!songs ? "text-gray-500" : "cursor-pointer"}`}
+            onClick={handleClickButtonPre}
+          >
             <MdSkipPrevious size={24} />
           </span>
           <span
             onClick={handleClickToggleButton}
-            className="text-[40px] cursor-pointer text-main-500"
+            className="text-[40px] cursor-pointer text-gray-800 hover:text-main-500"
           >
             {isPlaying ? (
               <PiPauseCircleLight size={50} />
@@ -130,7 +159,10 @@ const Player = () => {
               <PiPlayCircleLight size={50} />
             )}
           </span>
-          <span className="cursor-pointer">
+          <span
+            className={`${!songs ? "text-gray-500" : "cursor-pointer"}`}
+            onClick={handleClickButtonNext}
+          >
             <MdSkipNext size={24} />
           </span>
           <span className="cursor-pointer" title="Bật phát lại tất cả">
