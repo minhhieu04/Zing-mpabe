@@ -4,6 +4,7 @@ const initState = {
   // homeData: ["We don't talk anymore", "see you again", "superman Can Tho"],
   // test: "hello",
   banner: [],
+  section: {},
 };
 
 const appReducer = (state = initState, action) => {
@@ -12,8 +13,11 @@ const appReducer = (state = initState, action) => {
       return {
         ...state,
         banner:
-          action.homeData?.find((item) => item.sectionType === "banner")
+          action.homeData?.find((item) => item.sectionId === "hSlider")
             ?.items || null,
+        section:
+          action.homeData?.find((item) => item.sectionId === "hEditorTheme") ||
+          {},
       };
 
     default:

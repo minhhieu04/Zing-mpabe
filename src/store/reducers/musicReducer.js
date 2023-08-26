@@ -1,4 +1,3 @@
-import { MdAccessAlarm } from "react-icons/md";
 import actionTypes from "../actions/actionTypes";
 
 const initState = {

@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
-import { Header, Slider } from "../../components";
+import { Header, Slider, Section } from "../../components";
 
 const Home = () => {
   return (
-    <div className="overflow-y-auto">
+    <div className="overflow-y-auto w-full">
       <Slider />
+      <Section />
     </div>
   );
 };
