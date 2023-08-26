@@ -15,6 +15,7 @@ const {
   PiPlayCircleLight,
   MdSkipPrevious,
   PiRepeatLight,
+  PiRepeatOnceLight,
 } = icons;
 var intervalId;
 
@@ -24,6 +25,8 @@ const Player = () => {
   const [songInfo, setSongInfo] = useState(null);
   const [audio, setAudio] = useState(new Audio());
   const [currentSecond, setCurrentSecond] = useState(0);
+  const [isShuffle, setIsShuffle] = useState(false);
+  const [isRepeat, setIsRepeat] = useState(false);
   const thumbRef = useRef();
   const trackRef = useRef();
   const dispatch = useDispatch();
@@ -57,7 +60,7 @@ const Player = () => {
     intervalId && clearInterval(intervalId);
     audio.pause();
     audio.load();
-    if (isPlaying) {
+    if (isPlaying && thumbRef.current) {
       audio.play();
       intervalId = setInterval(() => {
         let percent =
@@ -67,6 +70,24 @@ const Player = () => {
       }, 100);
     }
   }, [audio]);
+
+  useEffect(() => {
+    const handleEnded = () => {
+      if (isShuffle) {
+        handleClickButtonShuffle();
+      } else if (isRepeat) {
+        handleClickButtonNext();
+      } else {
+        audio.pause();
+        dispatch(actions.play(false));
+      }
+    };
+    audio.addEventListener("ended", handleEnded);
+
+    return () => {
+      audio.removeEventListener("ended", handleEnded);
+    };
+  }, [audio, isShuffle, isRepeat]);
 
   const handleClickToggleButton = async () => {
     if (isPlaying) {
@@ -78,7 +99,7 @@ const Player = () => {
     }
   };
 
-  const handleClickProgressbar = (e) => {
+  const handleClickProgressBar = (e) => {
     const trackRect = trackRef.current.getBoundingClientRect();
     const percent =
       Math.round(((e.clientX - trackRect.left) * 10000) / trackRect.width) /
@@ -100,6 +121,7 @@ const Player = () => {
       dispatch(actions.play(true));
     }
   };
+
   const handleClickButtonPre = () => {
     if (songs) {
       let currentSongIndex;
@@ -111,6 +133,13 @@ const Player = () => {
       dispatch(actions.setCurSongId(songs[currentSongIndex - 1].encodeId));
       dispatch(actions.play(true));
     }
+  };
+
+  const handleClickButtonShuffle = () => {
+    const randomIndex = Math.round(Math.random() * songs?.length) - 1;
+    console.log(songs[randomIndex].encodeId);
+    dispatch(actions.setCurSongId(songs[randomIndex].encodeId));
+    dispatch(actions.play(true));
   };
 
   return (
@@ -140,7 +169,11 @@ const Player = () => {
       </div>
       <div className="w-[40%] flex-auto flex flex-col justify-center gap-2 items-center py-1">
         <div className="flex gap-8 justify-center items-center">
-          <span className="cursor-pointer" title="Bật phát ngẫu nhiên">
+          <span
+            className={`cursor-pointer ${isShuffle && "text-main-500"}`}
+            title="Bật phát ngẫu nhiên"
+            onClick={() => setIsShuffle((prev) => !prev)}
+          >
             <RxShuffle size={24} />
           </span>
           <span
@@ -165,7 +198,11 @@ const Player = () => {
           >
             <MdSkipNext size={24} />
           </span>
-          <span className="cursor-pointer" title="Bật phát lại tất cả">
+          <span
+            className={`cursor-pointer ${isRepeat && "text-main-500"}`}
+            onClick={() => setIsRepeat((prev) => !prev)}
+            title="Bật phát lại tất cả"
+          >
             <PiRepeatLight size={24} />
           </span>
         </div>
@@ -175,7 +212,7 @@ const Player = () => {
           </span>
           <div
             className="w-3/4 h-[3px] hover:h-[7px] rounded-l-full cursor-pointer rounded-r-full bg-[rgba(0,0,0,0.1)] relative"
-            onClick={handleClickProgressbar}
+            onClick={handleClickProgressBar}
             ref={trackRef}
           >
             <div

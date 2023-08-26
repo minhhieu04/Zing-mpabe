@@ -19,6 +19,7 @@ import {
   PiPauseCircleLight,
   PiPlayCircleLight,
   PiMusicNotesSimple,
+  PiRepeatOnceLight,
 } from "react-icons/pi";
 import { RxShuffle } from "react-icons/rx";
 import { BiSortAlt2 } from "react-icons/bi";
@@ -35,6 +36,7 @@ const icons = {
   IoMdHeart,
   BsThreeDots,
   PiRepeatLight,
+  PiRepeatOnceLight,
   RxShuffle,
   MdSkipNext,
   MdSkipPrevious,
