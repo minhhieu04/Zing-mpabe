@@ -26,7 +26,7 @@ const Player = () => {
   const [audio, setAudio] = useState(new Audio());
   const [currentSecond, setCurrentSecond] = useState(0);
   const [isShuffle, setIsShuffle] = useState(false);
-  const [isRepeat, setIsRepeat] = useState(false);
+  const [repeatMode, setRepeatMode] = useState(0);
   const thumbRef = useRef();
   const trackRef = useRef();
   const dispatch = useDispatch();
@@ -75,8 +75,8 @@ const Player = () => {
     const handleEnded = () => {
       if (isShuffle) {
         handleClickButtonShuffle();
-      } else if (isRepeat) {
-        handleClickButtonNext();
+      } else if (repeatMode) {
+        repeatMode === 1 ? audio.play() : handleClickButtonNext();
       } else {
         audio.pause();
         dispatch(actions.play(false));
@@ -87,7 +87,7 @@ const Player = () => {
     return () => {
       audio.removeEventListener("ended", handleEnded);
     };
-  }, [audio, isShuffle, isRepeat]);
+  }, [audio, isShuffle, repeatMode]);
 
   const handleClickToggleButton = async () => {
     if (isPlaying) {
@@ -199,11 +199,15 @@ const Player = () => {
             <MdSkipNext size={24} />
           </span>
           <span
-            className={`cursor-pointer ${isRepeat && "text-main-500"}`}
-            onClick={() => setIsRepeat((prev) => !prev)}
+            className={`cursor-pointer ${repeatMode && "text-main-500"}`}
+            onClick={() => setRepeatMode((prev) => (prev === 2 ? 0 : prev + 1))}
             title="Bật phát lại tất cả"
           >
-            <PiRepeatLight size={24} />
+            {repeatMode === 1 ? (
+              <PiRepeatOnceLight size={24} />
+            ) : (
+              <PiRepeatLight size={24} />
+            )}
           </span>
         </div>
         <div className="w-full flex items-center gap-3 justify-center text-xs">
