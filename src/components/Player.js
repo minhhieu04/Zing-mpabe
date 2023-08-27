@@ -5,14 +5,15 @@ import icons from "../utils/icons";
 import * as actions from "../store/actions";
 import moment from "moment";
 import { toast } from "react-toastify";
+import { LoadingSong } from "./";
 
 const {
   IoMdHeartEmpty,
   BsThreeDots,
   RxShuffle,
   MdSkipNext,
-  BsPauseCircle,
-  BsPlayCircle,
+  BiPause,
+  BiPlay,
   MdSkipPrevious,
   PiRepeatLight,
   PiRepeatOnceLight,
@@ -27,16 +28,19 @@ const Player = () => {
   const [currentSecond, setCurrentSecond] = useState(0);
   const [isShuffle, setIsShuffle] = useState(false);
   const [repeatMode, setRepeatMode] = useState(0);
+  const [isLoadingSource, setIsLoadingSource] = useState(false);
   const thumbRef = useRef();
   const trackRef = useRef();
   const dispatch = useDispatch();
 
   useEffect(() => {
     const fetchDetailSong = async () => {
+      setIsLoadingSource(false);
       const [res1, res2] = await Promise.all([
         apis.apiGetDetailSong(curSongId),
         apis.apiGetSong(curSongId),
       ]);
+      setIsLoadingSource(true);
       if (res1.data.err === 0) {
         setSongInfo(res1.data.data);
       }
@@ -184,9 +188,15 @@ const Player = () => {
           </span>
           <span
             onClick={handleClickToggleButton}
-            className="text-[40px] cursor-pointer text-gray-800 hover:text-main-500"
+            className="text-[40px] cursor-pointer text-gray-800 hover:text-main-500 border border-gray-500 rounded-full p-1"
           >
-            {isPlaying ? <BsPauseCircle /> : <BsPlayCircle />}
+            {!isLoadingSource ? (
+              <LoadingSong />
+            ) : isPlaying ? (
+              <BiPause size={32} />
+            ) : (
+              <BiPlay size={32} />
+            )}
           </span>
           <span
             className={`${!songs ? "text-gray-500" : "cursor-pointer"}`}

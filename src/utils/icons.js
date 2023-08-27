@@ -12,8 +12,6 @@ import {
   BsSearchHeart,
   BsThreeDots,
   BsDot,
-  BsPlayCircle,
-  BsPauseCircle,
 } from "react-icons/bs";
 import { IoMdHeartEmpty, IoMdHeart } from "react-icons/io";
 import {
@@ -22,7 +20,7 @@ import {
   PiRepeatOnceLight,
 } from "react-icons/pi";
 import { RxShuffle } from "react-icons/rx";
-import { BiSortAlt2, BiPlay } from "react-icons/bi";
+import { BiSortAlt2, BiPlay, BiPause } from "react-icons/bi";
 
 const icons = {
   MdOutlineLibraryMusic,
@@ -40,11 +38,10 @@ const icons = {
   RxShuffle,
   MdSkipNext,
   MdSkipPrevious,
-  BsPauseCircle,
-  BsPlayCircle,
   PiMusicNotesSimple,
   BiSortAlt2,
   BsDot,
   BiPlay,
+  BiPause,
 };
 export default icons;

@@ -44,7 +44,7 @@ const Album = () => {
           />
           <div
             className={`absolute top-0 left-0 bottom-0 right-0 hover:bg-overlay-30 text-white flex items-center justify-center ${
-              isPlaying && "hover:rounded-full"
+              isPlaying ? "hover:rounded-full" : "hover:rounded-md"
             }`}
           >
             <span className="border border-white rounded-full p-2">
