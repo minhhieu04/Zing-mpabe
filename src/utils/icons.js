@@ -12,17 +12,17 @@ import {
   BsSearchHeart,
   BsThreeDots,
   BsDot,
+  BsPlayCircle,
+  BsPauseCircle,
 } from "react-icons/bs";
 import { IoMdHeartEmpty, IoMdHeart } from "react-icons/io";
 import {
   PiRepeatLight,
-  PiPauseCircleLight,
-  PiPlayCircleLight,
   PiMusicNotesSimple,
   PiRepeatOnceLight,
 } from "react-icons/pi";
 import { RxShuffle } from "react-icons/rx";
-import { BiSortAlt2 } from "react-icons/bi";
+import { BiSortAlt2, BiPlay } from "react-icons/bi";
 
 const icons = {
   MdOutlineLibraryMusic,
@@ -40,10 +40,11 @@ const icons = {
   RxShuffle,
   MdSkipNext,
   MdSkipPrevious,
-  PiPauseCircleLight,
-  PiPlayCircleLight,
+  BsPauseCircle,
+  BsPlayCircle,
   PiMusicNotesSimple,
   BiSortAlt2,
   BsDot,
+  BiPlay,
 };
 export default icons;

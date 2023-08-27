@@ -11,8 +11,8 @@ const {
   BsThreeDots,
   RxShuffle,
   MdSkipNext,
-  PiPauseCircleLight,
-  PiPlayCircleLight,
+  BsPauseCircle,
+  BsPlayCircle,
   MdSkipPrevious,
   PiRepeatLight,
   PiRepeatOnceLight,
@@ -186,11 +186,7 @@ const Player = () => {
             onClick={handleClickToggleButton}
             className="text-[40px] cursor-pointer text-gray-800 hover:text-main-500"
           >
-            {isPlaying ? (
-              <PiPauseCircleLight size={50} />
-            ) : (
-              <PiPlayCircleLight size={50} />
-            )}
+            {isPlaying ? <BsPauseCircle /> : <BsPlayCircle />}
           </span>
           <span
             className={`${!songs ? "text-gray-500" : "cursor-pointer"}`}

@@ -2,15 +2,19 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import * as apis from "../../apis";
 import moment from "moment";
-import { Lists } from "../../components";
+import { Lists, AudioSpinner } from "../../components";
 import { Scrollbars } from "react-custom-scrollbars-2";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import * as actions from "../../store/actions";
+import icons from "../../utils/icons";
+
+const { BiPlay } = icons;
 
 const Album = () => {
   const { pid } = useParams();
   const [playlistData, setPlaylistData] = useState({});
   const dispatch = useDispatch();
+  const { curSongId, isPlaying, songs } = useSelector((state) => state.music);
 
   useEffect(() => {
     const fetchDetailPlaylist = async () => {
@@ -28,11 +32,26 @@ const Album = () => {
   return (
     <div className="flex gap-8 w-full h-full px-[59px] pt-5">
       <div className="flex-none w-1/4 flex flex-col items-center gap-2">
-        <img
-          src={playlistData?.thumbnailM}
-          alt="thumbnail"
-          className="w-full object-contain rounded-md shadow-md"
-        />
+        <div className="w-full relative overflow-hidden">
+          <img
+            src={playlistData?.thumbnailM}
+            alt="thumbnail"
+            className={`w-full object-contain ${
+              isPlaying
+                ? "rounded-full animate-rotate-center"
+                : "animate-rotate-center-pause rounded-md"
+            } shadow-md`}
+          />
+          <div
+            className={`absolute top-0 left-0 bottom-0 right-0 hover:bg-overlay-30 text-white flex items-center justify-center ${
+              isPlaying && "hover:rounded-full"
+            }`}
+          >
+            <span className="border border-white rounded-full p-2">
+              {isPlaying ? <AudioSpinner /> : <BiPlay size={30} />}
+            </span>
+          </div>
+        </div>
         <div className="flex flex-col items-center">
           <h3 className="text-[20px] font-bold text-gray-700 text-center">
             {playlistData?.title}
