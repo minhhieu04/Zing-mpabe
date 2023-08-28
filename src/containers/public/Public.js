@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Outlet } from "react-router-dom"; // dùng để hiển thị các trang con của public
 import { SidebarLeft, SidebarRight, Player, Header } from "../../components";
+import { Scrollbars } from "react-custom-scrollbars-2";
 
 const Public = () => {
   const [isShowSidebarRight, setIsShowSidebarRight] = useState(true);
@@ -10,12 +11,15 @@ const Public = () => {
         <div className="w-[240px] h-full flex-none border border-blue-500">
           <SidebarLeft />
         </div>
-        <div className="flex-auto border border-red-400">
-          <div className="h-[70px] px-[59px] flex items-center">
+        <div className="flex-auto flex flex-col border border-red-400">
+          <div className="h-[70px] flex-none px-[59px] flex items-center">
             <Header />
           </div>
-          <Outlet />
-          <div className="w-full h-[600px]"></div>
+          <div className="w-full flex-auto">
+            <Scrollbars style={{ width: "100%", height: "100%" }}>
+              <Outlet />
+            </Scrollbars>
+          </div>
         </div>
         {isShowSidebarRight && (
           <div className="w-[329px] hidden 1600:flex flex-none border border-green-400 animate-slide-left">
