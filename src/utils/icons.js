@@ -12,6 +12,7 @@ import {
   BsSearchHeart,
   BsThreeDots,
   BsDot,
+  BsMusicNoteList,
 } from "react-icons/bs";
 import { IoMdHeartEmpty, IoMdHeart } from "react-icons/io";
 import {
@@ -21,6 +22,7 @@ import {
 } from "react-icons/pi";
 import { RxShuffle } from "react-icons/rx";
 import { BiSortAlt2, BiPlay, BiPause } from "react-icons/bi";
+import { SlVolume2, SlVolumeOff } from "react-icons/sl";
 
 const icons = {
   MdOutlineLibraryMusic,
@@ -43,5 +45,8 @@ const icons = {
   BsDot,
   BiPlay,
   BiPause,
+  BsMusicNoteList,
+  SlVolume2,
+  SlVolumeOff,
 };
 export default icons;

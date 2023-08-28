@@ -17,10 +17,13 @@ const {
   MdSkipPrevious,
   PiRepeatLight,
   PiRepeatOnceLight,
+  BsMusicNoteList,
+  SlVolumeOff,
+  SlVolume2,
 } = icons;
 var intervalId;
 
-const Player = () => {
+const Player = ({ setIsShowSidebarRight }) => {
   // const [isPlaying, setIsPlaying] = useState(true);
   const { curSongId, isPlaying, songs } = useSelector((state) => state.music);
   const [songInfo, setSongInfo] = useState(null);
@@ -29,6 +32,8 @@ const Player = () => {
   const [isShuffle, setIsShuffle] = useState(false);
   const [repeatMode, setRepeatMode] = useState(0);
   const [isLoadingSource, setIsLoadingSource] = useState(false);
+  const [volume, setVolume] = useState(70);
+  const [prevVolume, setPrevVolume] = useState(25);
   const thumbRef = useRef();
   const trackRef = useRef();
   const dispatch = useDispatch();
@@ -93,6 +98,10 @@ const Player = () => {
     };
   }, [audio, isShuffle, repeatMode]);
 
+  useEffect(() => {
+    audio.volume = volume / 100;
+  }, [audio, volume]);
+
   const handleClickToggleButton = async () => {
     if (isPlaying) {
       audio.pause();
@@ -144,6 +153,15 @@ const Player = () => {
     console.log(songs[randomIndex].encodeId);
     dispatch(actions.setCurSongId(songs[randomIndex].encodeId));
     dispatch(actions.play(true));
+  };
+
+  const handleToggleVolume = () => {
+    if (+volume !== 0) {
+      setPrevVolume(volume);
+      setVolume(0);
+    } else {
+      setVolume(prevVolume);
+    }
   };
 
   return (
@@ -233,7 +251,29 @@ const Player = () => {
           <span>{moment.utc(songInfo?.duration * 1000).format("mm:ss")}</span>
         </div>
       </div>
-      <div className="w-[30%] flex-auto">Volume</div>
+      <div className="w-[30%] flex-auto flex items-center justify-end gap-4">
+        <div className="flex items-center gap-2 pr-4 border-r border-gray-400">
+          <span className="text-gray-500" onClick={handleToggleVolume}>
+            {+volume === 0 ? <SlVolumeOff /> : <SlVolume2 />}
+          </span>
+          <input
+            type="range"
+            step={1}
+            min={0}
+            max={100}
+            value={volume}
+            onChange={(e) => {
+              setVolume(e.target.value);
+            }}
+          ></input>
+        </div>
+        <div
+          className="p-2 ml-2 border rounded bg-main-500 opacity-90 hover:opacity-100 cursor-pointer text-white"
+          onClick={() => setIsShowSidebarRight((prev) => !prev)}
+        >
+          <BsMusicNoteList size={18} />
+        </div>
+      </div>
     </div>
   );
 };
