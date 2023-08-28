@@ -1,19 +1,17 @@
 import React, { memo } from "react";
-import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-const Section = () => {
-  const { section } = useSelector((state) => state.app);
+const Section = ({ data }) => {
   const navigate = useNavigate();
 
   return (
     <div className="mt-12 px-[59px] flex flex-col gap-5">
       <div className="flex items-center justify-between">
-        <h3 className="text-xl font-bold">{section?.title}</h3>
-        <span className="text-xs">TẤT CẢ</span>
+        <h3 className="text-xl font-bold">{data?.title}</h3>
+        <span className="text-xs">{data?.items?.length > 5 && "TẤT CẢ"}</span>
       </div>
-      <div className="flex justify-between items-center gap-7">
-        {section?.items?.slice(0, 5).map((item) => (
+      <div className="flex justify-between items-start gap-7">
+        {data?.items?.slice(0, 5).map((item) => (
           <div
             key={item.encodeId}
             className="flex flex-col gap-3 flex-auto text-sm w-1/5 "
