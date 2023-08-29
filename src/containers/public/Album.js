@@ -18,7 +18,9 @@ const Album = () => {
 
   useEffect(() => {
     const fetchDetailPlaylist = async () => {
+      dispatch(actions.loading(true));
       const response = await apis.apiGetDetailPlaylist(pid);
+      dispatch(actions.loading(false));
       // console.log(response);
       if (response?.data.err === 0) {
         setPlaylistData(response?.data?.data);
