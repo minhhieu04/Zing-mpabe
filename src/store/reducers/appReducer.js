@@ -10,6 +10,7 @@ const initState = {
   section4: {},
   section5: {},
   isLoading: false,
+  newRelease: {},
 };
 
 const appReducer = (state = initState, action) => {
@@ -35,6 +36,9 @@ const appReducer = (state = initState, action) => {
         section5:
           action.homeData?.find((item) => item.sectionId === "hArtistTheme") ||
           {},
+        newRelease:
+          action.homeData?.find((item) => item.sectionType === "new-release") ||
+          [],
       };
     case actionTypes.LOADING:
       return {

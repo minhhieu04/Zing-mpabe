@@ -14,14 +14,13 @@ const Album = () => {
   const { pid } = useParams();
   const [playlistData, setPlaylistData] = useState({});
   const dispatch = useDispatch();
-  const { curSongId, isPlaying, songs } = useSelector((state) => state.music);
+  const { isPlaying } = useSelector((state) => state.music);
 
   useEffect(() => {
     const fetchDetailPlaylist = async () => {
       dispatch(actions.loading(true));
       const response = await apis.apiGetDetailPlaylist(pid);
       dispatch(actions.loading(false));
-      // console.log(response);
       if (response?.data.err === 0) {
         setPlaylistData(response?.data?.data);
         dispatch(actions.setPlaylist(response?.data?.data?.song.items));
@@ -70,7 +69,7 @@ const Album = () => {
           </span>
         </div>
       </div>
-      <Scrollbars style={{ width: "100%", height: "80%" }}>
+      <Scrollbars autoHide style={{ width: "100%", height: "80%" }}>
         <div className="flex-auto mb-40">
           <span className="text-sm flex gap-1">
             <span className="text-gray-600 ">Lời tựa</span>

@@ -10,3 +10,5 @@ export { default as Section } from "./Section";
 export { default as AudioSpinner } from "./AudioSpinner";
 export { default as LoadingSong } from "./LoadingSong";
 export { default as LoadingSpinner } from "./LoadingSpinner";
+export { default as SongItem } from "./SongItem";
+export { default as NewRelease } from "./NewRelease";
