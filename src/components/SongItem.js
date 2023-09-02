@@ -1,5 +1,6 @@
-import React from "react";
+import React, { memo } from "react";
 import moment from "moment";
+import "moment/locale/vi";
 
 const SongItem = ({ thumbnail, title, artists, releaseDate }) => {
   const releaseDateInSeconds = releaseDate;
@@ -31,7 +32,7 @@ const SongItem = ({ thumbnail, title, artists, releaseDate }) => {
   }
 
   return (
-    <div className="w-[30%] flex flex-auto p-[10px] gap-[10px] hover:bg-main-200 cursor-auto rounded-md">
+    <div className="w-[45%] flex w= p-[10px] gap-[10px] hover:bg-main-200 cursor-auto rounded-md 1024:w-[30%]">
       <img
         src={thumbnail}
         alt={title}
@@ -40,10 +41,11 @@ const SongItem = ({ thumbnail, title, artists, releaseDate }) => {
       <div className="flex flex-col justify-between">
         <span className="text-sm font-semibold text-gray-700">{title}</span>
         <span className="text-xs text-gray-500">{artists}</span>
+        {/* <span className="text-xs text-gray-500">{moment(releaseDate * 1000 ).fromNow()}</span> */}
         <span className="text-xs text-gray-500">{formattedReleaseDate}</span>
       </div>
     </div>
   );
 };
 
-export default SongItem;
+export default memo(SongItem);

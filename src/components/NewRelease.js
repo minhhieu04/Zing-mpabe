@@ -52,7 +52,7 @@ const NewRelease = () => {
         <span className="text-xs">TẤT CẢ</span>
       </div>
       <div className="flex flex-wrap w-full">
-        {songs.map((item) => (
+        {songs?.map((item) => (
           <SongItem
             key={item.encodeId}
             thumbnail={item.thumbnailM}
