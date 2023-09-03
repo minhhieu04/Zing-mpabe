@@ -59,6 +59,7 @@ const NewRelease = () => {
             title={item.title}
             artists={item.artistsNames}
             releaseDate={item.releaseDate}
+            sid={item.encodeId}
           />
         ))}
       </div>

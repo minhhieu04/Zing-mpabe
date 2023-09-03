@@ -1,8 +1,10 @@
 import React, { memo } from "react";
 import moment from "moment";
 import "moment/locale/vi";
+import { useDispatch } from "react-redux";
+import * as actions from "../store/actions";
 
-const SongItem = ({ thumbnail, title, artists, releaseDate }) => {
+const SongItem = ({ thumbnail, title, artists, releaseDate, sid }) => {
   const releaseDateInSeconds = releaseDate;
   const releaseDateMoment = moment.unix(releaseDateInSeconds);
 
@@ -31,12 +33,17 @@ const SongItem = ({ thumbnail, title, artists, releaseDate }) => {
     formattedReleaseDate = releaseDateMoment.format("DD/MM/YYYY");
   }
 
+  const dispatch = useDispatch();
   return (
-    <div className="w-[45%] flex w= p-[10px] gap-[10px] hover:bg-main-200 cursor-auto rounded-md 1024:w-[30%]">
+    <div className="w-[45%] flex p-[10px] gap-[10px] hover:bg-main-200 cursor-auto rounded-md 1024:w-[30%]">
       <img
         src={thumbnail}
         alt={title}
-        className="w-[60px] h-[60px] object-cover rounded-md"
+        className="w-[60px] h-[60px] object-cover rounded-md cursor-pointer"
+        onClick={() => {
+          dispatch(actions.setCurSongId(sid));
+          dispatch(actions.play(true));
+        }}
       />
       <div className="flex flex-col justify-between">
         <span className="text-sm font-semibold text-gray-700">{title}</span>
