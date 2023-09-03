@@ -1,11 +1,18 @@
 import React from "react";
-import { Slider, Section, NewRelease } from "../../components";
+import { Slider, Section, NewRelease, Top100 } from "../../components";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 const Home = () => {
-  const { section1, section2, section3, section4, section5, weekChart } =
-    useSelector((state) => state.app);
+  const {
+    section1,
+    section2,
+    section3,
+    section4,
+    section5,
+    weekChart,
+    top100,
+  } = useSelector((state) => state.app);
   console.log(weekChart);
   return (
     <div className="overflow-y-auto w-full">
@@ -31,6 +38,7 @@ const Home = () => {
           </Link>
         ))}
       </div>
+      <Top100 data={top100} />
       <div className="w-full h-[500px]"></div>
     </div>
   );

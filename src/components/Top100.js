@@ -1,7 +1,7 @@
 import React, { memo } from "react";
 import { useNavigate } from "react-router-dom";
 
-const Section = ({ data }) => {
+const Top100 = ({ data }) => {
   const navigate = useNavigate();
 
   return (
@@ -24,10 +24,13 @@ const Section = ({ data }) => {
               src={item.thumbnailM}
               alt="thumbnailSection"
             ></img>
+            <span className="text-sm font-bold">
+              {item.title.length > 30
+                ? `${item.title.slice(0, 30)} ...`
+                : item.title}
+            </span>
             <span className="text-gray-500">
-              {item.sortDescription.length > 50
-                ? `${item.sortDescription.substring(0, 50)} ...`
-                : item.sortDescription}
+              {item.artists.map((artist) => artist.name).join(", ")}
             </span>
           </div>
         ))}
@@ -36,4 +39,4 @@ const Section = ({ data }) => {
   );
 };
 
-export default memo(Section);
+export default memo(Top100);

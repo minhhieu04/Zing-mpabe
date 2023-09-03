@@ -12,6 +12,7 @@ const initState = {
   isLoading: false,
   newRelease: {},
   weekChart: [],
+  top100: {},
 };
 
 const appReducer = (state = initState, action) => {
@@ -43,6 +44,8 @@ const appReducer = (state = initState, action) => {
         weekChart:
           action.homeData?.find((item) => item.sectionType === "weekChart")
             ?.items || [],
+        top100:
+          action.homeData?.find((item) => item.sectionId === "h100") || {},
       };
     case actionTypes.LOADING:
       return {
