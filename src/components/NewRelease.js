@@ -54,7 +54,7 @@ const NewRelease = () => {
       <div className="flex flex-wrap w-full">
         {songs?.map((item) => (
           <SongItem
-            key={item.encodeId}
+            key={Math.random().toString()}
             thumbnail={item.thumbnailM}
             title={item.title}
             artists={item.artistsNames}
