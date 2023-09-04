@@ -90,6 +90,26 @@ module.exports = {
             transform: "rotate(0)",
           },
         },
+        "scale-up-image": {
+          "0%": {
+            "-webkit-transform": "scale(1)",
+            transform: "scale(1)",
+          },
+          "100%": {
+            "-webkit-transform": "scale(1.2)",
+            transform: "scale(1.2)",
+          },
+        },
+        "scale-down-image": {
+          "0%": {
+            "-webkit-transform": "scale(1.2)",
+            transform: "scale(1.2)",
+          },
+          "100%": {
+            "-webkit-transform": "scale(1)",
+            transform: "scale(1)",
+          },
+        },
       },
 
       animation: {
@@ -103,6 +123,10 @@ module.exports = {
           "slide-left 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both",
         "rotate-center": "rotate-center 10s linear infinite",
         "rotate-center-pause": "rotate-center-pause 0.3s linear 1 both",
+        "scale-up-image":
+          "scale-up-image 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both",
+        "scale-down-image":
+          "scale-down-image 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both",
         dropdown: "dropdown 0.5s ease both",
       },
     },

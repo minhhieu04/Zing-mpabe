@@ -52,9 +52,9 @@ const NewRelease = () => {
         <span className="text-xs">TẤT CẢ</span>
       </div>
       <div className="flex flex-wrap w-full">
-        {songs?.map((item) => (
+        {songs?.map((item, index) => (
           <SongItem
-            key={Math.random().toString()}
+            key={index}
             thumbnail={item.thumbnailM}
             title={item.title}
             artists={item.artistsNames}

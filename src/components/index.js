@@ -13,3 +13,4 @@ export { default as LoadingSpinner } from "./LoadingSpinner";
 export { default as SongItem } from "./SongItem";
 export { default as NewRelease } from "./NewRelease";
 export { default as Top100 } from "./Top100";
+export { default as SectionItem } from "./SectionItem";

@@ -1,9 +1,7 @@
 import React, { memo } from "react";
-import { useNavigate } from "react-router-dom";
+import { SectionItem } from "./";
 
 const Section = ({ data }) => {
-  const navigate = useNavigate();
-
   return (
     <div className="mt-12 px-[59px] flex flex-col gap-5">
       <div className="flex items-center justify-between">
@@ -11,25 +9,8 @@ const Section = ({ data }) => {
         <span className="text-xs">{data?.items?.length > 5 && "TẤT CẢ"}</span>
       </div>
       <div className="flex justify-between items-start gap-7">
-        {data?.items?.slice(0, 5).map((item) => (
-          <div
-            key={item.encodeId}
-            className="flex flex-col gap-3 flex-auto text-sm w-1/5"
-          >
-            <img
-              className="rounded-lg h-auto w-full cursor-pointer"
-              onClick={() => {
-                navigate(item?.link?.split(".")[0]);
-              }}
-              src={item.thumbnailM}
-              alt="thumbnailSection"
-            ></img>
-            <span className="text-gray-500">
-              {item.sortDescription.length > 50
-                ? `${item.sortDescription.substring(0, 50)} ...`
-                : item.sortDescription}
-            </span>
-          </div>
+        {data?.items?.slice(0, 5).map((item, index) => (
+          <SectionItem item={item} key={index} />
         ))}
       </div>
     </div>
