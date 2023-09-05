@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import * as apis from "../../apis";
 import moment from "moment";
 import { Lists, AudioSpinner } from "../../components";
@@ -15,6 +15,7 @@ const Album = () => {
   const [playlistData, setPlaylistData] = useState({});
   const dispatch = useDispatch();
   const { isPlaying } = useSelector((state) => state.music);
+  const location = useLocation();
 
   useEffect(() => {
     const fetchDetailPlaylist = async () => {
@@ -29,6 +30,18 @@ const Album = () => {
 
     fetchDetailPlaylist();
   }, [pid]);
+
+  useEffect(() => {
+    if (location?.state?.playAlbum) {
+      const randomIndex =
+        Math.round(Math.random() * playlistData?.song?.total) - 1;
+      console.log(randomIndex);
+      dispatch(
+        actions.setCurSongId(playlistData?.song?.items[randomIndex]?.encodeId)
+      );
+      dispatch(actions.play(true));
+    }
+  }, [pid, playlistData]);
 
   return (
     <div className="flex gap-8 w-full h-full px-[59px] pt-5">

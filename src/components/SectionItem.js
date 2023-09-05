@@ -1,10 +1,12 @@
 import React, { memo, useState, useRef } from "react";
+import icons from "../utils/icons";
 import { useNavigate } from "react-router-dom";
 
 const SectionItem = ({ item }) => {
   const navigate = useNavigate();
   const [isHover, setIsHover] = useState(false);
   const imageRef = useRef();
+  const { IoMdHeart, IoMdHeartEmpty, BsThreeDots, BiPlay } = icons;
 
   const handleHover = () => {
     setIsHover(true);
@@ -19,8 +21,11 @@ const SectionItem = ({ item }) => {
 
   return (
     <div
+      onClick={() => {
+        navigate(item?.link?.split(".")[0], { state: { playAlbum: false } });
+      }}
       key={item.encodeId}
-      className="flex flex-col gap-3 flex-auto text-sm w-1/5"
+      className="flex flex-col gap-3 flex-auto text-sm w-1/5 cursor-pointer"
     >
       <div
         onMouseEnter={handleHover}
@@ -28,14 +33,29 @@ const SectionItem = ({ item }) => {
         className="w-full relative overflow-hidden rounded-lg"
       >
         {isHover && (
-          <div className="absolute z-40 top-0 left-0 bottom-0 right-0 bg-overlay-30 rounded-lg" />
+          <div className="absolute z-40 top-0 left-0 bottom-0 right-0 bg-overlay-30 rounded-lg text-white flex items-center justify-center gap-10 ">
+            <span>
+              <IoMdHeartEmpty size={20} />
+            </span>
+            <span
+              className="p-1 border border-white rounded-full"
+              onClick={(e) => {
+                e.stopPropagation();
+                navigate(item?.link?.split(".")[0], {
+                  state: { playAlbum: true },
+                });
+              }}
+            >
+              <BiPlay size={40} />
+            </span>
+            <span>
+              <BsThreeDots size={20} />
+            </span>
+          </div>
         )}
         <img
           ref={imageRef}
-          className="h-auto w-full cursor-pointer"
-          onClick={() => {
-            navigate(item?.link?.split(".")[0]);
-          }}
+          className="h-auto w-full rounded-lg"
           src={item.thumbnailM}
           alt="thumbnailSection"
         ></img>

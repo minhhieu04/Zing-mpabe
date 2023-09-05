@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import * as apis from "../apis";
@@ -83,6 +84,7 @@ const Player = ({ setIsShowSidebarRight }) => {
   useEffect(() => {
     const handleEnded = () => {
       if (isShuffle) {
+        console.log(isShuffle);
         handleClickButtonShuffle();
       } else if (repeatMode) {
         repeatMode === 1 ? audio.play() : handleClickButtonNext();
