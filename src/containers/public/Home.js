@@ -1,5 +1,11 @@
 import React from "react";
-import { Slider, Section, NewRelease, Top100 } from "../../components";
+import {
+  Slider,
+  Section,
+  NewRelease,
+  Top100,
+  ChartSection,
+} from "../../components";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
@@ -13,7 +19,6 @@ const Home = () => {
     weekChart,
     top100,
   } = useSelector((state) => state.app);
-  console.log(weekChart);
   return (
     <div className="overflow-y-auto w-full">
       <Slider />
@@ -23,6 +28,7 @@ const Home = () => {
       <Section data={section3} />
       <Section data={section4} />
       <Section data={section5} />
+      <ChartSection />
       <div className="w-full flex items-center px-[43px] mt-12">
         {weekChart?.map((item) => (
           <Link
