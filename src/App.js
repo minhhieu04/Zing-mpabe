@@ -9,6 +9,7 @@ import {
   Personal,
   Album,
   WeekRank,
+  ZingChart,
 } from "./containers/public/";
 import path from "./utils/path";
 import { Routes, Route } from "react-router-dom";
@@ -32,6 +33,7 @@ function App() {
             <Route path={path.ALBUM__TITLE__PID} element={<Album />} />
             <Route path={path.PLAYLIST__TITLE__PID} element={<Album />} />
             <Route path={path.WEEKRANK__TITLE__PID} element={<WeekRank />} />
+            <Route path={path.ZING_CHART} element={<ZingChart />} />
 
             <Route path={path.START} element={<Home />} />
           </Route>

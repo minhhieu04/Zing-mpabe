@@ -4,3 +4,4 @@ export { default as Login } from "./Login";
 export { default as Personal } from "./Personal";
 export { default as Album } from "./Album";
 export { default as WeekRank } from "./WeekRank";
+export { default as ZingChart } from "./ZingChart";

@@ -4,6 +4,11 @@ import { Chart } from "chart.js/auto";
 import { useSelector } from "react-redux";
 import { SongItem } from "./";
 import _ from "lodash";
+import { Link } from "react-router-dom";
+import path from "../utils/path";
+import icons from "../utils/icons";
+
+const { BiPlay } = icons;
 
 const ChartSection = () => {
   const [data, setData] = useState(null);
@@ -105,9 +110,14 @@ const ChartSection = () => {
       <div className="bg-[#2b273f] rounded-md w-full h-[414px]"></div>
       <div className="absolute top-0 z-10 bg-[rgba(75,37,103,.95)] left-[59px] bottom-0 right-[59px] rounded-md"></div>
       <div className="absolute top-0 z-20 left-[59px] bottom-0 right-[59px] p-5 flex flex-col gap-8">
-        <h3 className="text-2xl text-white font-bold">#zingchart</h3>
-        <div className="flex gap-4 h-full">
-          <div className="flex-4 h-[300px] flex flex-col gap-4">
+        <Link to={path.ZING_CHART} className="flex gap-2 items-center ">
+          <h3 className="text-2xl text-white font-bold">#zingchart</h3>
+          <span className="p-1 rounded-full bg-white hover:bg-gray-200">
+            <BiPlay size={20} />
+          </span>
+        </Link>
+        <div className="flex gap-2 h-[70%]">
+          <div className="flex-4 flex flex-col gap-3">
             {rank?.slice(0, 3)?.map((item, index) => (
               <SongItem
                 thumbnail={item.thumbnail}
@@ -121,6 +131,12 @@ const ChartSection = () => {
                 style="bg-[hsla(0,0%,100%,.07)] hover:bg-[#643f7a] text-white"
               />
             ))}
+            <Link
+              to={path.ZING_CHART}
+              className="text-white px-4 py-1 rounded-l-full rounded-r-full m-auto border border-white w-fit"
+            >
+              Xem thêm
+            </Link>
           </div>
           <div className="flex-6 h-[300px] relative">
             {data && <Line ref={chartRef} data={data} options={options} />}
