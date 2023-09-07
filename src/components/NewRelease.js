@@ -55,6 +55,7 @@ const NewRelease = () => {
         {songs?.map((item, index) => (
           <div key={index} className="w-[45%] 1024:w-[30%]">
             <SongItem
+              key={index}
               thumbnail={item.thumbnailM}
               title={item.title}
               artists={item.artistsNames}

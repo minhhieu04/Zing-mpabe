@@ -12,6 +12,7 @@ const SongItem = ({
   sid,
   order,
   percent,
+  style,
 }) => {
   const releaseDateInSeconds = releaseDate;
   const releaseDateMoment = moment.unix(releaseDateInSeconds);
@@ -45,17 +46,20 @@ const SongItem = ({
   return (
     <div
       className={`w-full flex p-[10px] gap-[10px] cursor-pointer rounded-md justify-between items-center ${
-        order
-          ? "bg-[hsla(0,0%,100%,.07)] hover:bg-[#643f7a] text-white "
-          : "hover:bg-main-200"
+        style || "hover:bg-main-200"
       }`}
     >
       <div className="flex gap-4">
         {order && (
-          <span class="text-[32px] text-white relative">
-            <span class="absolute top-[-1px] left-[-1px] right-[-1px] bottom-[-1px] text-red-500 z-10">
-              {order}
-            </span>
+          <span
+            className={`${
+              order === 1
+                ? "text-shadow-no1"
+                : order === 2
+                ? "text-shadow-no2"
+                : "text-shadow-no3"
+            } text-[rgba(75,37,103,.95)] text-[32px] m-auto`}
+          >
             {order}
           </span>
         )}
@@ -79,7 +83,7 @@ const SongItem = ({
           )}
         </div>
       </div>
-      {percent && <span>{percent}</span>}
+      {percent && <span className="font-bold">{percent}</span>}
     </div>
   );
 };
