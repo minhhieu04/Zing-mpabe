@@ -120,6 +120,7 @@ const ChartSection = () => {
           <div className="flex-4 flex flex-col gap-3">
             {rank?.slice(0, 3)?.map((item, index) => (
               <SongItem
+                key={index}
                 thumbnail={item.thumbnail}
                 title={item.title}
                 artists={item.artistsNames}
