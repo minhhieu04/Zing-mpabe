@@ -11,10 +11,10 @@ const Public = () => {
   return (
     <div className="w-full h-screen relative flex bg-main-300 flex-col">
       <div className="w-full h-full flex flex-auto">
-        <div className="w-[240px] h-full flex-none border border-blue-500">
+        <div className="w-[240px] h-full flex-none">
           <SidebarLeft />
         </div>
-        <div className="relative flex-auto flex flex-col border border-red-400">
+        <div className="relative flex-auto flex flex-col">
           {isLoading && (
             <div className="absolute z-20 top-0 left-0 bottom-0 right-0 bg-main-300 flex items-center justify-center">
               <LoadingSpinner />
@@ -30,7 +30,7 @@ const Public = () => {
           </div>
         </div>
         {isShowSidebarRight && (
-          <div className="w-[329px] hidden 1600:flex flex-none border border-green-400 animate-slide-left">
+          <div className="w-[329px] hidden 1600:flex flex-none animate-slide-left">
             <SidebarRight />{" "}
           </div>
         )}

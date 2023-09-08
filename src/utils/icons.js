@@ -23,6 +23,7 @@ import {
 import { RxShuffle } from "react-icons/rx";
 import { BiSortAlt2, BiPlay, BiPause } from "react-icons/bi";
 import { SlVolume2, SlVolumeOff } from "react-icons/sl";
+import { GoTrash } from "react-icons/go";
 
 const icons = {
   MdOutlineLibraryMusic,
@@ -48,5 +49,6 @@ const icons = {
   BsMusicNoteList,
   SlVolume2,
   SlVolumeOff,
+  GoTrash,
 };
 export default icons;
