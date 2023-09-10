@@ -6,6 +6,7 @@ const initState = {
   songs: null,
   curSongData: null,
   curAlbumId: null,
+  recentSongs: [],
 };
 
 const musicReducer = (state = initState, action) => {
@@ -34,6 +35,34 @@ const musicReducer = (state = initState, action) => {
       return {
         ...state,
         curAlbumId: action.pid || null,
+      };
+    case actionTypes.SET_RECENT_SONG:
+      const newData = action.data;
+      const existingIndex = state.recentSongs.findIndex(
+        (song) => song.sid === newData.sid
+      );
+
+      let updatedRecentSongs;
+
+      // Nếu data đã tồn tại trong mảng, thì xoá nó đi
+      if (existingIndex !== -1) {
+        updatedRecentSongs = [...state.recentSongs];
+        updatedRecentSongs.splice(existingIndex, 1);
+      } else {
+        updatedRecentSongs = [...state.recentSongs];
+      }
+
+      // Chèn data vào đầu mảng
+      updatedRecentSongs.unshift(newData);
+
+      // Giới hạn mảng chỉ có 20 phần tử
+      if (updatedRecentSongs.length > 20) {
+        updatedRecentSongs.pop(); // Xoá phần tử cuối cùng
+      }
+
+      return {
+        ...state,
+        recentSongs: updatedRecentSongs,
       };
 
     default:

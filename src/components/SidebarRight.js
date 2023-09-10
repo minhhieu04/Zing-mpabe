@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import icons from "../utils/icons";
 import { useSelector } from "react-redux";
@@ -9,21 +10,25 @@ const { GoTrash } = icons;
 
 const SidebarRight = () => {
   const [isRecent, setIsRecent] = useState(false);
-  const { curSongData, curAlbumId, isPlaying } = useSelector(
+  const { curSongData, curAlbumId, isPlaying, recentSongs } = useSelector(
     (state) => state.music
   );
   const [playlist, setPlaylist] = useState(null);
+  const fetchDetailPlaylist = async () => {
+    const response = await apiGetDetailPlaylist(curAlbumId);
+    if (response?.data.err === 0) setPlaylist(response.data.data?.song?.items);
+  };
   useEffect(() => {
-    const fetchDetailPlaylist = async () => {
-      const response = await apiGetDetailPlaylist(curAlbumId);
-      console.log(response);
-      if (response?.data.err === 0)
-        setPlaylist(response.data.data?.song?.items);
-    };
+    curAlbumId && fetchDetailPlaylist();
+  }, []);
 
+  useEffect(() => {
     if (curAlbumId && isPlaying) fetchDetailPlaylist();
   }, [curAlbumId, isPlaying]);
-  console.log(playlist);
+
+  useEffect(() => {
+    setIsRecent(false);
+  }, [isPlaying]);
   return (
     <div className="flex flex-col text-xs w-full h-full">
       <div className="h-[70px] w-full flex-none py-[14px] justify-between px-2 flex gap-8 items-center">
@@ -31,7 +36,7 @@ const SidebarRight = () => {
           <span
             onClick={() => setIsRecent((prev) => !prev)}
             className={`${
-              !isRecent && "bg-main-100"
+              !isRecent && "bg-main-100 text-main-500"
             } py-[5px] flex-1 flex justify-center items-center rounded-l-full rounded-r-full`}
           >
             Danh sách phát
@@ -39,7 +44,7 @@ const SidebarRight = () => {
           <span
             onClick={() => setIsRecent((prev) => !prev)}
             className={`${
-              isRecent && "bg-main-100"
+              isRecent && "bg-main-100 text-main-500"
             } py-[5px] flex-1 flex justify-center items-center rounded-l-full rounded-r-full`}
           >
             Nghe gần đây
@@ -49,43 +54,60 @@ const SidebarRight = () => {
           <GoTrash size={14} />
         </span>
       </div>
-      <div className="w-full flex flex-col px-2 flex-auto">
-        <Scrollbars autoHide style={{ width: "100%", height: "100%" }}>
-          <SongItem
-            thumbnail={curSongData?.thumbnail}
-            title={curSongData?.title}
-            artists={curSongData?.artistsNames}
-            sid={curSongData?.encodeId}
-            sm
-            style={"bg-main-500 text-white"}
-          />
-          <div className="flex flex-col text-black pt-[15px] pb-[5px] px-2">
-            <span className="text-sm font-bold">Tiếp theo</span>
-            <span className="text-sm flex gap-1 py-1">
-              <span className="text-gray-500">Từ playlist</span>
-              <span className="text-main-500 font-semibold">
-                {curSongData?.album?.title?.length > 30
-                  ? `${curSongData?.album?.title?.slice(0, 30)}...`
-                  : curSongData?.album?.title}
+      {isRecent ? (
+        <div className="w-full flex flex-col px-2 flex-auto">
+          <Scrollbars autoHide style={{ width: "100%", height: "91%" }}>
+            {recentSongs.map((item, index) => (
+              <SongItem
+                key={index}
+                thumbnail={item?.thumbnail}
+                title={item?.title}
+                artists={item?.artists}
+                sid={item?.sid}
+                sm
+              />
+            ))}
+          </Scrollbars>
+        </div>
+      ) : (
+        <div className="w-full flex flex-col px-2 flex-auto">
+          <Scrollbars autoHide style={{ width: "100%", height: "91%" }}>
+            <SongItem
+              thumbnail={curSongData?.thumbnail}
+              title={curSongData?.title}
+              artists={curSongData?.artistsNames}
+              sid={curSongData?.encodeId}
+              sm
+              style={"bg-main-500 text-white"}
+            />
+            <div className="flex flex-col text-black pt-[15px] pb-[5px] px-2">
+              <span className="text-sm font-bold">Tiếp theo</span>
+              <span className="text-sm flex gap-1 py-1">
+                <span className="text-gray-500">Từ playlist</span>
+                <span className="text-main-500 font-semibold">
+                  {curSongData?.album?.title?.length > 30
+                    ? `${curSongData?.album?.title?.slice(0, 30)}...`
+                    : curSongData?.album?.title}
+                </span>
               </span>
-            </span>
-          </div>
-          {playlist && (
-            <div className="flex flex-col">
-              {playlist.map((item, index) => (
-                <SongItem
-                  key={index}
-                  thumbnail={item?.thumbnail}
-                  title={item?.title}
-                  artists={item?.artistsNames}
-                  sid={item?.encodeId}
-                  sm
-                />
-              ))}
             </div>
-          )}
-        </Scrollbars>
-      </div>
+            {playlist && (
+              <div className="flex flex-col">
+                {playlist.map((item, index) => (
+                  <SongItem
+                    key={index}
+                    thumbnail={item?.thumbnail}
+                    title={item?.title}
+                    artists={item?.artistsNames}
+                    sid={item?.encodeId}
+                    sm
+                  />
+                ))}
+              </div>
+            )}
+          </Scrollbars>
+        </div>
+      )}
     </div>
   );
 };

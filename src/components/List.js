@@ -15,6 +15,14 @@ const List = ({ songData }) => {
       onClick={() => {
         dispatch(actions.setCurSongId(songData?.encodeId));
         dispatch(actions.play(true));
+        dispatch(
+          actions.setRecentSong({
+            thumbnail: songData?.thumbnail,
+            title: songData?.title,
+            sid: songData?.encodeId,
+            artists: songData?.artistsNames,
+          })
+        );
       }}
     >
       <div className="flex items-center gap-3 flex-1">

@@ -73,6 +73,7 @@ const SongItem = ({
           onClick={() => {
             dispatch(actions.setCurSongId(sid));
             dispatch(actions.play(true));
+            dispatch(actions.setRecentSong({ thumbnail, title, sid, artists }));
           }}
         />
         <div className="flex flex-col justify-center ">
