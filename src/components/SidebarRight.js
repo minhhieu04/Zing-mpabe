@@ -10,9 +10,8 @@ const { GoTrash } = icons;
 
 const SidebarRight = () => {
   const [isRecent, setIsRecent] = useState(false);
-  const { curSongData, curAlbumId, isPlaying, recentSongs } = useSelector(
-    (state) => state.music
-  );
+  const { curSongData, curAlbumId, isPlaying, recentSongs, curSongId } =
+    useSelector((state) => state.music);
   const [playlist, setPlaylist] = useState(null);
   const fetchDetailPlaylist = async () => {
     const response = await apiGetDetailPlaylist(curAlbumId);
@@ -27,8 +26,8 @@ const SidebarRight = () => {
   }, [curAlbumId, isPlaying]);
 
   useEffect(() => {
-    setIsRecent(false);
-  }, [isPlaying]);
+    isPlaying && setIsRecent(false);
+  }, [isPlaying, curSongId]);
   return (
     <div className="flex flex-col text-xs w-full h-full">
       <div className="h-[70px] w-full flex-none py-[14px] justify-between px-2 flex gap-8 items-center">
@@ -56,7 +55,7 @@ const SidebarRight = () => {
       </div>
       {isRecent ? (
         <div className="w-full flex flex-col px-2 flex-auto">
-          <Scrollbars autoHide style={{ width: "100%", height: "91%" }}>
+          <Scrollbars autoHide style={{ width: "100%", height: "100%" }}>
             {recentSongs.map((item, index) => (
               <SongItem
                 key={index}
@@ -71,7 +70,7 @@ const SidebarRight = () => {
         </div>
       ) : (
         <div className="w-full flex flex-col px-2 flex-auto">
-          <Scrollbars autoHide style={{ width: "100%", height: "91%" }}>
+          <Scrollbars autoHide style={{ width: "100%", height: "100%" }}>
             <SongItem
               thumbnail={curSongData?.thumbnail}
               title={curSongData?.title}
@@ -108,6 +107,7 @@ const SidebarRight = () => {
           </Scrollbars>
         </div>
       )}
+      <div className="w-full h-[90px]" />
     </div>
   );
 };

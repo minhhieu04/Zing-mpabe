@@ -83,7 +83,7 @@ const Album = () => {
           </span>
         </div>
       </div>
-      <Scrollbars autoHide style={{ width: "100%", height: "80%" }}>
+      <Scrollbars autoHide style={{ width: "100%", height: "90%" }}>
         <div className="flex-auto mb-40">
           <span className="text-sm flex gap-1">
             <span className="text-gray-600 ">Lời tựa</span>
