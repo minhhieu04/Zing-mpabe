@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import icons from "../utils/icons";
 import * as actions from "../store/actions";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, createSearchParams } from "react-router-dom";
 import path from "../utils/path";
 
 const { BsSearchHeart } = icons;
@@ -16,7 +16,12 @@ const Search = () => {
   const handleSearch = async (e) => {
     if (e.keyCode === 13) {
       dispatch(actions.search(keyword));
-      navigate(`/${path.SEARCH}/${path.ALL}`);
+      navigate({
+        pathname: `/${path.SEARCH}/${path.ALL}`,
+        search: createSearchParams({
+          q: keyword,
+        }).toString(),
+      });
     }
   };
 
