@@ -1,16 +1,22 @@
 import React, { useEffect, useState } from "react";
 import icons from "../utils/icons";
-import { apiSearch } from "../apis";
+import * as actions from "../store/actions";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import path from "../utils/path";
 
 const { BsSearchHeart } = icons;
 
 const Search = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const [keyword, setKeyword] = useState("");
 
   const handleSearch = async (e) => {
     if (e.keyCode === 13) {
-      // const response = await apiSearch(keyword);
-      // console.log(response);
+      dispatch(actions.search(keyword));
+      navigate(`/${path.SEARCH}/${path.ALL}`);
     }
   };
 
