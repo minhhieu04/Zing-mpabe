@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { handleRoundedNumber } from "../../utils/fn";
-import { SongItem, List, SectionItem } from "../../components";
+import { SongItem, List, SectionItem, Artist } from "../../components";
 
 const SearchAll = () => {
   const { searchData } = useSelector((state) => state.music);
@@ -74,7 +74,22 @@ const SearchAll = () => {
         <h3 className="text-lg font-bold mb-5">Playlist/Album</h3>
         <div className="flex justify-between items-start gap-7">
           {searchData?.playlists?.slice(0, 5)?.map((item, index) => (
+            // Chưa giống, xử lý css sau
             <SectionItem item={item} key={index} />
+          ))}
+        </div>
+      </div>
+      <div className="flex flex-col w-full">
+        <h3 className="text-xl font-bold mb-5">Nghệ Sĩ/OA</h3>
+        <div className="flex justify-between items-start gap-7">
+          {searchData?.artists?.slice(0, 5)?.map((item, index) => (
+            // Chưa giống, xử lý css sau
+            <Artist
+              key={index}
+              img={item.thumbnailM}
+              title={item.name}
+              follower={item.totalFollow}
+            />
           ))}
         </div>
       </div>
