@@ -13,7 +13,7 @@ const SongItem = ({
   order,
   percent,
   style,
-  sm,
+  size,
 }) => {
   const releaseDateInSeconds = releaseDate;
   const releaseDateMoment = moment.unix(releaseDateInSeconds);
@@ -68,7 +68,7 @@ const SongItem = ({
           src={thumbnail}
           alt={title}
           className={`${
-            sm ? "w-[40px] h-[40px]" : "w-[60px] h-[60px]"
+            size || "w-[60px] h-[60px]"
           } object-cover rounded-md cursor-pointer`}
           onClick={() => {
             dispatch(actions.setCurSongId(sid));

@@ -1,17 +1,18 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { handleRoundedNumber } from "../../utils/fn";
+import { SongItem, List, SectionItem } from "../../components";
 
 const SearchAll = () => {
   const { searchData } = useSelector((state) => state.music);
   console.log(searchData);
   return (
-    <div className="w-full flex flex-col px-[60.6667px]">
+    <div className="w-full flex flex-col px-[60.6667px] gap-[60px]">
       <div className="flex flex-col">
         <h3 className="text-lg font-bold mb-5">Nổi bật</h3>
-        <div className="flex gap-8">
+        <div className="flex gap-8 ">
           {searchData?.top && (
-            <div className="p-[10px] bg-main-200 rounded-md flex flex-1 gap-8 items-center">
+            <div className="p-[10px] cursor-pointer bg-main-200 rounded-md flex flex-1 gap-8 items-center">
               <img
                 src={searchData?.top.thumbnail}
                 alt="thumbnail"
@@ -35,8 +36,46 @@ const SearchAll = () => {
               </div>
             </div>
           )}
-          <div className="flex gap-1">SOng 1</div>
-          <div className="flex gap-1">SOng 2</div>
+          {searchData?.songs
+            ?.filter((item, index) =>
+              [...Array(2).keys()].some((i) => i === index)
+            )
+            ?.map((item, i) => (
+              <div key={i} className="flex-1">
+                <SongItem
+                  thumbnail={item.thumbnail}
+                  sid={item.encodeId}
+                  title={item.title}
+                  artists={item.artistsNames}
+                  size="w-[84px] h-[84px]"
+                  style={"bg-main-200"}
+                />
+              </div>
+            ))}
+        </div>
+      </div>
+      <div className="flex flex-col w-full">
+        <div className="flex justify-between">
+          <h3 className="text-lg font-bold mb-5 pl-2">BÀI HÁT</h3>
+          <span className="text-sm text-gray-500 mb-5 pr-2">{"TẤT CẢ >"}</span>
+        </div>
+        <div className="flex justify-between flex-wrap w-full">
+          {searchData?.songs?.slice(0, 6)?.map((item, i) => (
+            <div
+              key={i}
+              className={`flex-auto w-[45%] ${i % 2 !== 0 ? "pl-4" : "pr-4"}`}
+            >
+              <List songData={item} isHideAlbum />
+            </div>
+          ))}
+        </div>
+      </div>
+      <div className="flex flex-col w-full">
+        <h3 className="text-lg font-bold mb-5">Playlist/Album</h3>
+        <div className="flex justify-between items-start gap-7">
+          {searchData?.playlists?.slice(0, 5)?.map((item, index) => (
+            <SectionItem item={item} key={index} />
+          ))}
         </div>
       </div>
     </div>

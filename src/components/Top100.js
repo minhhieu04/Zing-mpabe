@@ -1,6 +1,8 @@
 import React, { memo } from "react";
 import { useNavigate } from "react-router-dom";
 
+//Chưa kết hợp giữa top 100 và section, 2 cái này giống nhau #36
+
 const Top100 = ({ data }) => {
   const navigate = useNavigate();
 

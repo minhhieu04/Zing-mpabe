@@ -6,7 +6,7 @@ const SectionItem = ({ item }) => {
   const navigate = useNavigate();
   const [isHover, setIsHover] = useState(false);
   const imageRef = useRef();
-  const { IoMdHeart, IoMdHeartEmpty, BsThreeDots, BiPlay } = icons;
+  const { IoMdHeartEmpty, BsThreeDots, BiPlay } = icons;
 
   const handleHover = () => {
     setIsHover(true);

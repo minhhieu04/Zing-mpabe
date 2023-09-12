@@ -63,7 +63,7 @@ const SidebarRight = () => {
                 title={item?.title}
                 artists={item?.artists}
                 sid={item?.sid}
-                sm
+                size="h-[40px] w-[40px]"
               />
             ))}
           </Scrollbars>
@@ -99,7 +99,7 @@ const SidebarRight = () => {
                     title={item?.title}
                     artists={item?.artistsNames}
                     sid={item?.encodeId}
-                    sm
+                    size="w-[40px] h-[40px]"
                   />
                 ))}
               </div>
