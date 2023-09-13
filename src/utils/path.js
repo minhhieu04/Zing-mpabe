@@ -11,6 +11,7 @@ const path = {
   SEARCH: "tim-kiem",
   ALL: "tat-ca",
   SONGS: "bai-hat",
+  HOME__SINGER: ":singer"
 };
 
 export default path;

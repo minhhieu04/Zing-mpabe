@@ -13,6 +13,7 @@ import {
   Search,
   SearchAll,
   SearchSongs,
+  Singer
 } from "./containers/public/";
 import path from "./utils/path";
 import { Routes, Route } from "react-router-dom";
@@ -37,6 +38,7 @@ function App() {
             <Route path={path.PLAYLIST__TITLE__PID} element={<Album />} />
             <Route path={path.WEEKRANK__TITLE__PID} element={<WeekRank />} />
             <Route path={path.ZING_CHART} element={<ZingChart />} />
+            <Route path={path.HOME__SINGER} element={<Singer />} />
             <Route path={path.SEARCH} element={<Search />}>
               <Route path={path.ALL} element={<SearchAll />} />
               <Route path={path.SONGS} element={<SearchSongs />} />
