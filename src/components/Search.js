@@ -4,6 +4,7 @@ import * as actions from "../store/actions";
 import { useDispatch } from "react-redux";
 import { useNavigate, createSearchParams } from "react-router-dom";
 import path from "../utils/path";
+import {AiOutlineClose} from "react-icons/ai"
 
 const { BsSearchHeart } = icons;
 
@@ -26,7 +27,8 @@ const Search = () => {
   };
 
   return (
-    <div className="flex items-center text-gray-500">
+    <div className="flex items-center relative text-gray-500">
+      <span onClick={()=> setKeyword('')} className="absolute right-[16px] cursor-pointer"><AiOutlineClose size={22}/></span>
       <span className="flex h-10 pl-4 bg-main-200 justify-center items-center rounded-l-[20px]">
         <BsSearchHeart size={24} />
       </span>

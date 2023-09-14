@@ -13,6 +13,8 @@ import {
   Search,
   SearchAll,
   SearchSongs,
+  SearchPlaylist,
+  SearchArtist,
   Singer
 } from "./containers/public/";
 import path from "./utils/path";
@@ -42,6 +44,8 @@ function App() {
             <Route path={path.SEARCH} element={<Search />}>
               <Route path={path.ALL} element={<SearchAll />} />
               <Route path={path.SONGS} element={<SearchSongs />} />
+              <Route path={path.PLAYLIST} element={<SearchPlaylist />} />
+              <Route path={path.ARTIST} element={<SearchArtist />} />
             </Route>
 
             <Route path={path.START} element={<Home />} />
