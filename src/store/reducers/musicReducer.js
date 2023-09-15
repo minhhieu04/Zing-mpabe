@@ -70,6 +70,7 @@ const musicReducer = (state = initState, action) => {
       return {
         ...state,
         searchData: action.data || {},
+        keyword: action.keyword || ''
       };
 
     default:
