@@ -58,6 +58,28 @@ export const search = (keyword) => async (dispatch) => {
   }
 };
 
+export const getSearchSong = (singerId) => async (dispatch) => {
+  try {
+    const response = await apis.apiGetArtistSongs(singerId);
+    if (response?.data.err === 0) {
+      dispatch({
+        type: actionTypes.PLAYLIST,
+        songs: response.data.data.items,
+      });
+    } else {
+      dispatch({
+        type: actionTypes.PLAYLIST,
+        songs: null,
+      });
+    }
+  } catch (error) {
+    dispatch({
+      type: actionTypes.PLAYLIST,
+      songs: null,
+    });
+  }
+};
+
 // export const fetchDetailPlaylist = (pid) => async (dispatch) => {
 //   try {
 //     const response = await apis.apiGetDetailPlaylist(pid);

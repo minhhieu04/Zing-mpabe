@@ -6,7 +6,7 @@ import * as actions from "../store/actions";
 
 const { PiMusicNotesSimple } = icons;
 
-const List = ({ songData, isHideAlbum }) => {
+const List = ({ songData, isHideAlbum, isHideNote }) => {
   const dispatch = useDispatch();
 
   return (
@@ -26,7 +26,7 @@ const List = ({ songData, isHideAlbum }) => {
       }}
     >
       <div className="flex items-center gap-3 flex-1">
-        {!isHideAlbum && (
+        {!isHideNote && (
           <span>
             <PiMusicNotesSimple />
           </span>
