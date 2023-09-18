@@ -77,7 +77,7 @@ export const apiGetArtist = (alias) =>
   new Promise(async (resolve, reject) => {
     try {
       const response = await axios({
-        url: "/artistsong",
+        url: "/artist",
         method: "get",
         params: { name: alias },
       });

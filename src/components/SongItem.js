@@ -78,10 +78,10 @@ const SongItem = ({
         />
         <div className="flex flex-col justify-center ">
           <span className="text-sm font-semibold opacity-90">
-            {title?.length > 30 ? `${title?.slice(0, 30)}...` : title}
+            {title?.length > 30 ? `${title?.slice(0, 25)}...` : title}
           </span>
           <span className="text-xs opacity-70">
-            {artists?.length > 30 ? `${artists?.slice(0, 30)}...` : artists}
+            {artists?.length > 30 ? `${artists?.slice(0, 25)}...` : artists}
           </span>
           {/* <span className="text-xs text-gray-500">{moment(releaseDate * 1000 ).fromNow()}</span> */}
           {releaseDate && (

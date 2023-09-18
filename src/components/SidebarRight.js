@@ -84,8 +84,8 @@ const SidebarRight = () => {
               <span className="text-sm flex gap-1 py-1">
                 <span className="text-gray-500">Từ playlist</span>
                 <span className="text-main-500 font-semibold">
-                  {curSongData?.album?.title?.length > 30
-                    ? `${curSongData?.album?.title?.slice(0, 30)}...`
+                  {curSongData?.album?.title?.length > 25
+                    ? `${curSongData?.album?.title?.slice(0, 25)}...`
                     : curSongData?.album?.title}
                 </span>
               </span>
