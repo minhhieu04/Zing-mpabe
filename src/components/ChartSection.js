@@ -127,7 +127,7 @@ const ChartSection = () => {
                 sid={item.encodeId}
                 order={index + 1}
                 percent={`${Math.round(
-                  (+item.score * 100) / +chart.totalScore
+                  (+item.score * 100) / +chart?.totalScore
                 )}%`}
                 style="bg-[hsla(0,0%,100%,.07)] hover:bg-[#643f7a] text-white"
               />
@@ -161,7 +161,7 @@ const ChartSection = () => {
                 sid={rank?.find((i) => i.encodeId === selected)?.encodeId}
                 percent={`${Math.round(
                   (+rank?.find((i) => i.encodeId === selected)?.score * 100) /
-                    +chart.totalScore
+                    +chart?.totalScore
                 )}%`}
                 style="bg-white"
               />

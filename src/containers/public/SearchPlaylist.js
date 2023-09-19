@@ -18,7 +18,7 @@ const SearchPlaylist = () => {
   }, [searchData]);
   return (
     <div className="w-full flex-col flex gap-8 px-[46px]">
-      <h3>Playlist/Album</h3>
+      <h3 className="text-lg font-bold mb-5 ml-[14px]">Playlist/Album</h3>
       <div className="flex items-start flex-wrap justify-start">
         {playlists?.items?.map((item, index) => (
           <SectionItem item={item} key={index} />
