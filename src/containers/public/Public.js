@@ -20,7 +20,7 @@ const Public = () => {
               <LoadingSpinner />
             </div>
           )}
-          <div className="h-[70px] flex-none px-[59px] flex items-center">
+          <div className="h-[70px] fixed top-0 left-[240px] right-[329px] z-50 px-[59px] flex items-center">
             <Header />
           </div>
           <div className="w-full flex-auto">
