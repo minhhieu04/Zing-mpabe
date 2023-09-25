@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Outlet } from "react-router-dom"; // dùng để hiển thị các trang con của public
+import { Outlet, useParams } from "react-router-dom"; // dùng để hiển thị các trang con của public
 import { SidebarLeft, SidebarRight, Player, Header } from "../../components";
 import { Scrollbars } from "react-custom-scrollbars-2";
 import { LoadingSpinner } from "../../components";
@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 const Public = () => {
   const [isShowSidebarRight, setIsShowSidebarRight] = useState(true);
   const { isLoading } = useSelector((state) => state.app);
+  const { singer } = useParams();
   return (
     <div className="w-full h-screen relative flex bg-main-300 flex-col">
       <div className="w-full h-full flex flex-auto">
@@ -20,7 +21,11 @@ const Public = () => {
               <LoadingSpinner />
             </div>
           )}
-          <div className="h-[70px] flex-none px-[59px] flex items-center">
+          <div
+            className={`h-[70px] ${
+              singer ? "bg-transparent" : "bg-main-300"
+            }  fixed top-0 left-[240px] right-[329px] z-[50] px-[59px] flex items-center`}
+          >
             <Header />
           </div>
           <div className="w-full flex-auto">

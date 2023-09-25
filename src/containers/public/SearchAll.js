@@ -48,7 +48,7 @@ const SearchAll = () => {
                   title={item.title}
                   artists={item.artistsNames}
                   size="w-[84px] h-[84px]"
-                  style={"bg-main-200"}
+                  style="bg-main-200"
                 />
               </div>
             ))}

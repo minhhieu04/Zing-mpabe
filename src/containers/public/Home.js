@@ -21,6 +21,7 @@ const Home = () => {
   } = useSelector((state) => state.app);
   return (
     <div className="overflow-y-auto w-full">
+      <div className="w-full h-[70px]"></div>
       <Slider />
       <NewRelease />
       <Section data={section1} />
