@@ -5,7 +5,7 @@ import { SongItem, List, SectionItem, Artist } from "../../components";
 
 const SearchAll = () => {
   const { searchData } = useSelector((state) => state.music);
-  console.log(searchData);
+  // console.log(searchData);
   return (
     <div className="w-full flex flex-col px-[60.6667px] gap-[60px]">
       <div className="flex flex-col">

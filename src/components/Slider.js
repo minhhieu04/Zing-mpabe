@@ -83,7 +83,7 @@ const Slider = () => {
       dispatch(actions.setPlaylist(null));
     }
     if (item?.type === 4) {
-      console.log(item);
+      // console.log(item);
       const albumPath = item?.link?.split(".")[0];
       navigate(albumPath);
     } else {
