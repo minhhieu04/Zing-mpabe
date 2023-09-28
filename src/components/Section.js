@@ -8,7 +8,7 @@ const Section = ({ data }) => {
         <h3 className="text-xl font-bold pl-4">{data?.title}</h3>
         <span className="text-xs">{data?.items?.length > 5 && "TẤT CẢ"}</span>
       </div>
-      <div className="flex justify-between items-start">
+      <div className="flex">
         {data?.items?.slice(0, 5).map((item, index) => (
           <SectionItem item={item} key={index} />
         ))}
