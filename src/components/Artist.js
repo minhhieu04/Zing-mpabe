@@ -6,22 +6,33 @@ import { Link } from "react-router-dom";
 const { AiOutlineUserAdd } = icons;
 
 const Artist = ({ img, title, follower, link }) => {
-  const [isHover, setIsHover] = useState(false)
+  const [isHover, setIsHover] = useState(false);
   return (
-    <div className="flex w-1/5 flex-col gap-[15px]">
-      <Link className="relative overflow-hidden rounded-full cursor-pointer"
-      to={link}
-      onMouseEnter={() => setIsHover(true)}
-      onMouseLeave={() => setIsHover(false)}>
-      <img
-        src={img}
-        alt="avt-singer"
-        className={`w-full object-contain rounded-full ${isHover ? 'animate-scale-up-image' : 'animate-scale-down-image'}`}
-      />
-      {isHover && <div className="absolute right-0 bottom-0 left-0 top-0 bg-overlay-30 rounded-full"></div>}
+    <div className="flex w-full flex-col gap-[15px]">
+      <Link
+        className="relative overflow-hidden rounded-full cursor-pointer"
+        to={link}
+        onMouseEnter={() => setIsHover(true)}
+        onMouseLeave={() => setIsHover(false)}
+      >
+        <img
+          src={img}
+          alt="avt-singer"
+          className={`w-full object-contain rounded-full ${
+            isHover ? "animate-scale-up-image" : "animate-scale-down-image"
+          }`}
+        />
+        {isHover && (
+          <div className="absolute right-0 bottom-0 left-0 top-0 bg-overlay-30 rounded-full"></div>
+        )}
       </Link>
       <div className="flex flex-col gap-1 items-center">
-        <Link to={link} className="text-sm font-medium hover:underline hover:text-main-500">{title}</Link>
+        <Link
+          to={link}
+          className="text-sm font-medium hover:underline hover:text-main-500"
+        >
+          {title}
+        </Link>
         <span className="text-xs opacity-70">{`${handleRoundedNumber(
           follower
         )} quan tâm`}</span>

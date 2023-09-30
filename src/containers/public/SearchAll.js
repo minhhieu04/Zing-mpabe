@@ -5,7 +5,7 @@ import { SongItem, List, SectionItem, Artist } from "../../components";
 
 const SearchAll = () => {
   const { searchData } = useSelector((state) => state.music);
-  console.log(searchData);
+  // console.log(searchData);
   return (
     <div className="w-full flex flex-col px-[60.6667px] gap-[60px]">
       <div className="flex flex-col">
@@ -48,7 +48,7 @@ const SearchAll = () => {
                   title={item.title}
                   artists={item.artistsNames}
                   size="w-[84px] h-[84px]"
-                  style={"bg-main-200"}
+                  style="bg-main-200"
                 />
               </div>
             ))}

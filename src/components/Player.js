@@ -85,7 +85,7 @@ const Player = ({ setIsShowSidebarRight }) => {
   useEffect(() => {
     const handleEnded = () => {
       if (isShuffle) {
-        console.log(isShuffle);
+        // console.log(isShuffle);
         handleClickButtonShuffle();
       } else if (repeatMode) {
         repeatMode === 1 ? audio.play() : handleClickButtonNext();
@@ -122,7 +122,7 @@ const Player = ({ setIsShowSidebarRight }) => {
       100;
     thumbRef.current.style.cssText = `right: ${100 - percent}%`;
     audio.currentTime = (percent * songInfo.duration) / 100;
-    console.log(percent);
+    // console.log(percent);
   };
 
   const handleClickButtonNext = () => {
@@ -153,7 +153,7 @@ const Player = ({ setIsShowSidebarRight }) => {
 
   const handleClickButtonShuffle = () => {
     const randomIndex = Math.round(Math.random() * songs?.length) - 1;
-    console.log(songs[randomIndex].encodeId);
+    // console.log(songs[randomIndex].encodeId);
     dispatch(actions.setCurSongId(songs[randomIndex].encodeId));
     dispatch(actions.play(true));
   };

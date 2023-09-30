@@ -10,6 +10,7 @@ const actionTypes = {
   PLAY: "PLAY",
   PLAYLIST: "PLAYLIST",
   LOADING: "LOADING",
+  ZERO_SCROLL_TOP: "ZERO_SCROLL_TOP",
 };
 
 export default actionTypes;

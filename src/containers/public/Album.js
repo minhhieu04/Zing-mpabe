@@ -36,7 +36,7 @@ const Album = () => {
     if (location?.state?.playAlbum) {
       const randomIndex =
         Math.round(Math.random() * playlistData?.song?.total) - 1;
-      console.log(randomIndex);
+      // console.log(randomIndex);
       dispatch(
         actions.setCurSongId(playlistData?.song?.items[randomIndex]?.encodeId)
       );

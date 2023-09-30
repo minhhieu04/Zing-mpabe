@@ -22,3 +22,7 @@ export const getHome = () => async (dispatch) => {
     });
   }
 };
+export const zeroScrollTop = (flag) => ({
+  type: actionTypes.ZERO_SCROLL_TOP,
+  flag,
+});

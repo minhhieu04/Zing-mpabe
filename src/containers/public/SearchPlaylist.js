@@ -11,7 +11,7 @@ const SearchPlaylist = () => {
       const response = await apiGetArtist(searchData?.top?.alias);
       if (response.data.err === 0) {
         setPlaylists(response.data.data.sections[1]);
-        console.log(response.data.data.sections[1].items);
+        // console.log(response.data.data.sections[1].items);
       }
     };
     fetch();
