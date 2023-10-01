@@ -3,11 +3,7 @@ import actionTypes from "../actions/actionTypes";
 const initState = {
   // homeData: ["We don't talk anymore", "see you again", "superman Can Tho"],
   // test: "hello",
-<<<<<<< HEAD
-  banner: [],
-=======
   banner: null,
->>>>>>> 46d23bb1256c5ef49c3113b7cf294946f5713e76
   section1: null,
   section2: null,
   section3: null,
@@ -19,10 +15,7 @@ const initState = {
   top100: null,
   chart: null,
   rank: null,
-<<<<<<< HEAD
-=======
   scrollTop: true,
->>>>>>> 46d23bb1256c5ef49c3113b7cf294946f5713e76
 };
 
 const appReducer = (state = initState, action) => {

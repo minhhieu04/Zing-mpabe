@@ -111,7 +111,9 @@ const ChartSection = () => {
       <div className="absolute top-0 z-10 bg-[rgba(75,37,103,.95)] left-[59px] bottom-0 right-[59px] rounded-md"></div>
       <div className="absolute top-0 z-20 left-[59px] bottom-0 right-[59px] p-5 flex flex-col gap-8">
         <Link to={path.ZING_CHART} className="flex gap-2 items-center ">
-          <h3 className="text-2xl text-white font-bold">#zingchart</h3>
+          <span className="chart-title font-bold text-[40px] leading-[48px]">
+            #zingchart
+          </span>
           <span className="p-1 rounded-full bg-white hover:bg-gray-200">
             <BiPlay size={20} />
           </span>
