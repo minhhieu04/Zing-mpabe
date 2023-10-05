@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { useSelector, useDispatch } from "react-redux"; // useSelector: Lấy dữ liệu từ redux, useDispatch: mang actions tới redux
+import { useDispatch } from "react-redux"; // useSelector: Lấy dữ liệu từ redux, useDispatch: mang actions tới redux
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import {
@@ -19,14 +19,22 @@ import {
 } from "./containers/public/";
 import path from "./utils/path";
 import { Routes, Route } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import * as actions from "./store/actions";
+import { apiGetChartHome } from "./apis";
 
 function App() {
   // tham số state: Đại diện cho các giá trị trong store mà trước đó mình lưu trữ
   const dispatch = useDispatch();
+  const [weekChart, setWeekChart] = useState(null);
+
   useEffect(() => {
     dispatch(actions.getHome());
+    const fetchChartData = async () => {
+      const response = await apiGetChartHome();
+      if (response.data.err === 0) setWeekChart(response.data.data.weekChart);
+    };
+    fetchChartData();
   }, []);
   return (
     <>
@@ -38,7 +46,12 @@ function App() {
             <Route path={path.MY_MUSIC} element={<Personal />} />
             <Route path={path.ALBUM__TITLE__PID} element={<Album />} />
             <Route path={path.PLAYLIST__TITLE__PID} element={<Album />} />
-            <Route path={path.WEEKRANK__TITLE__PID} element={<WeekRank />} />
+            <Route
+              path={path.WEEKRANK__TITLE__PID}
+              element={
+                <WeekRank weekChart={weekChart && Object.values(weekChart)} />
+              }
+            />
             <Route path={path.ZING_CHART} element={<ZingChart />} />
             <Route path={path.HOME__SINGER} element={<Singer />} />
             <Route path={path.HOME__ARTIST__SINGER} element={<Singer />} />

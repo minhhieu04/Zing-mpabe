@@ -6,7 +6,7 @@ import * as actions from "../store/actions";
 
 const { PiMusicNotesSimple } = icons;
 
-const List = ({ songData, isHideAlbum, isHideNote }) => {
+const List = ({ songData, isHideAlbum, isHideNote, order }) => {
   const dispatch = useDispatch();
 
   return (
@@ -29,6 +29,21 @@ const List = ({ songData, isHideAlbum, isHideNote }) => {
         {!isHideNote && (
           <span>
             <PiMusicNotesSimple />
+          </span>
+        )}
+        {order && (
+          <span
+            className={`${
+              order === 1
+                ? "text-shadow-no1"
+                : order === 2
+                ? "text-shadow-no2"
+                : order === 3
+                ? "text-shadow-no3"
+                : "text-shadow-other"
+            } text-main-300 text-[32px] flex items-center justify-center flex-none w-[10%]`}
+          >
+            {order}
           </span>
         )}
         <img

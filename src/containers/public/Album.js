@@ -45,7 +45,7 @@ const Album = () => {
   }, [pid, playlistData]);
 
   return (
-    <div className="flex gap-8 w-full h-full px-[59px] pt-5">
+    <div className="flex gap-8 mt-[90px] w-full h-full px-[59px] pt-5">
       <div className="flex-none w-1/4 flex flex-col items-center gap-2">
         <div className="w-full relative overflow-hidden">
           <img

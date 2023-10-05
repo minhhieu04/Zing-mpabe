@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { apiGetChartHome } from "../../apis";
 import { Line } from "react-chartjs-2";
 import { Chart } from "chart.js/auto";
-import { SongItem } from "../../components";
+import { SongItem, RankList } from "../../components";
 import _ from "lodash";
 
 const ZingChart = () => {
@@ -112,7 +112,15 @@ const ZingChart = () => {
     }
   }, [chartData]);
 
-  // console.log(data);
+  // useEffect(() => {
+  //   if (isShowFullSongs) {
+  //     setSongs(chartData?.RTChart?.items);
+  //   } else {
+  //     setSongs(chartData?.RTChart?.items.slice(0, 10));
+  //   }
+  // }, [isShowFullSongs, chartData]);
+
+  // console.log(isShowFullSongs);
 
   return (
     <div>
@@ -123,7 +131,7 @@ const ZingChart = () => {
           </span>
         </h3>
 
-        <div className="relative h-[300px] w-full ">
+        <div className="relative h-[300px] w-full mb-[60px] ">
           <div className="flex-6 absolute top-0 left-0 bottom-0 right-0">
             {data && <Line ref={chartRef} data={data} options={options} />}
             <div
@@ -168,6 +176,46 @@ const ZingChart = () => {
             </div>
           </div>
         </div>
+        <RankList data={chartData?.RTChart?.items} number={10} />
+        <div className="relative">
+          <img
+            src="https://zjs.zmdcdn.me/zmp3-desktop/releases/v1.9.76/static/media/week-chart-bg.edf332e5.jpg"
+            alt="bg-chart"
+            className="w-full h-[650px] object-cover grayscale"
+          />
+          <div className="absolute top-0 left-0 bottom-0 right-0 bg-[rgb(206,217,217,0.9)] "></div>
+          <div className="absolute top-0 left-0 bottom-1/2 right-0 flex flex-col mt-10 gap-4 px-[60px] ">
+            <h3 className="font-bold text-[40px] text-main-500">
+              Bảng xếp hạng tuần
+            </h3>
+            <div className="flex gap-4 h-fit">
+              {chartData?.weekChart &&
+                Object.entries(chartData.weekChart)?.map((item, i) => (
+                  <div
+                    className="flex-1 bg-[hsla(0,0%,100%,0.5)] rounded-md px-[10px] py-5"
+                    key={i}
+                  >
+                    <h3 className="text-[24px] text-main-500 font-bold ">
+                      {item[0] === "vn"
+                        ? "VIỆT NAM"
+                        : item[0] === "us"
+                        ? "US-UK"
+                        : "K-POP"}
+                    </h3>
+                    <div className="mt-4 h-fit">
+                      <RankList
+                        data={item[1]?.items}
+                        isHideAlbum
+                        number={5}
+                        link={item[1]?.link}
+                      />
+                    </div>
+                  </div>
+                ))}
+            </div>
+          </div>
+        </div>
+        <div className="h-[1000px] "></div>
       </div>
     </div>
   );

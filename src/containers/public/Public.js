@@ -12,12 +12,10 @@ const Public = () => {
   const { singer } = useParams();
   const dispatch = useDispatch();
   const handleCrollTop = (e) => {
-    if (singer) {
-      if (e.target.scrollTop === 0) {
-        dispatch(actions.zeroScrollTop(true));
-      } else {
-        dispatch(actions.zeroScrollTop(false));
-      }
+    if (e.target.scrollTop === 0) {
+      dispatch(actions.zeroScrollTop(true));
+    } else {
+      dispatch(actions.zeroScrollTop(false));
     }
   };
   return (
@@ -46,6 +44,7 @@ const Public = () => {
               style={{ width: "100%", height: "100%" }}
             >
               <Outlet />
+              <div className="w-full h-[120px]" />
             </Scrollbars>
           </div>
         </div>
