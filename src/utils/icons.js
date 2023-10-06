@@ -4,6 +4,8 @@ import {
   MdOutlineFeed,
   MdSkipNext,
   MdSkipPrevious,
+  MdChevronLeft,
+  MdChevronRight,
 } from "react-icons/md";
 import { GrEmptyCircle } from "react-icons/gr";
 import {
@@ -52,6 +54,8 @@ const icons = {
   SlVolumeOff,
   GoTrash,
   AiOutlineUserAdd,
-  AiOutlineClose
+  AiOutlineClose,
+  MdChevronLeft,
+  MdChevronRight,
 };
 export default icons;
