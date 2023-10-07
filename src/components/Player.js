@@ -35,8 +35,10 @@ const Player = ({ setIsShowSidebarRight }) => {
   const [isLoadingSource, setIsLoadingSource] = useState(false);
   const [volume, setVolume] = useState(70);
   const [prevVolume, setPrevVolume] = useState(25);
+  const [isHoverVolume, setIsHoverVolume] = useState(false);
   const thumbRef = useRef();
   const trackRef = useRef();
+  const volumeRef = useRef();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -103,6 +105,12 @@ const Player = ({ setIsShowSidebarRight }) => {
 
   useEffect(() => {
     audio.volume = volume / 100;
+  }, [audio, volume]);
+
+  useEffect(() => {
+    if (volumeRef.current) {
+      volumeRef.current.style.cssText = `right: ${100 - volume}%`;
+    }
   }, [audio, volume]);
 
   const handleClickToggleButton = async () => {
@@ -255,10 +263,27 @@ const Player = ({ setIsShowSidebarRight }) => {
         </div>
       </div>
       <div className="w-[30%] flex-auto flex items-center justify-end gap-4">
-        <div className="flex items-center gap-2 pr-4 border-r border-gray-400">
+        <div
+          className="flex items-center gap-2 pr-4 border-r border-gray-400"
+          onMouseEnter={() => setIsHoverVolume(true)}
+          onMouseLeave={() => {
+            setIsHoverVolume(false);
+          }}
+        >
           <span className="text-gray-500" onClick={handleToggleVolume}>
             {+volume === 0 ? <SlVolumeOff /> : <SlVolume2 />}
           </span>
+          <div
+            className={`w-[130px] h-[4px] rounded-l-full rounded-r-full bg-white ${
+              isHoverVolume ? "hidden" : "relative"
+            } `}
+          >
+            <div
+              ref={volumeRef}
+              className={`absolute top-0 left-0 bottom-0 rounded-l-full rounded-r-full bg-main-500 right-[${volume}%]`}
+            ></div>
+          </div>
+
           <input
             type="range"
             step={1}
@@ -268,6 +293,7 @@ const Player = ({ setIsShowSidebarRight }) => {
             onChange={(e) => {
               setVolume(e.target.value);
             }}
+            className={`w-[130px] ${isHoverVolume ? "inline" : "hidden"}`}
           ></input>
         </div>
         <div
