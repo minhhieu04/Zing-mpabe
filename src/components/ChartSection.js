@@ -106,8 +106,8 @@ const ChartSection = () => {
   }, [chart]);
 
   return (
-    <div className="px-[59px] mt-12 relative max-h-[414px] ">
-      <div className="bg-[#2b273f] rounded-md w-full h-[414px]"></div>
+    <div className="px-[59px] mt-12 relative 1400:max-h-[414px] h-[760px]">
+      <div className="bg-[#2b273f] rounded-md w-full 1400:max-h-[414px] h-[760px] "></div>
       <div className="absolute top-0 z-10 bg-[rgba(75,37,103,.95)] left-[59px] bottom-0 right-[59px] rounded-md"></div>
       <div className="absolute top-0 z-20 left-[59px] bottom-0 right-[59px] p-5 flex flex-col gap-8">
         <Link to={path.ZING_CHART} className="flex gap-2 items-center ">
@@ -118,7 +118,7 @@ const ChartSection = () => {
             <BiPlay size={20} />
           </span>
         </Link>
-        <div className="flex gap-2 h-[70%]">
+        <div className="flex gap-2 h-[70%] 1400:flex-row flex-col">
           <div className="flex-4 flex flex-col gap-3">
             {rank?.slice(0, 3)?.map((item, index) => (
               <SongItem
@@ -141,7 +141,7 @@ const ChartSection = () => {
               Xem thêm
             </Link>
           </div>
-          <div className="flex-6 h-[300px] relative">
+          <div className="flex-6 h-[300px] relative 1400:order-last 1400:w-[500px] h-[80%]">
             {data && <Line ref={chartRef} data={data} options={options} />}
             <div
               className="tooltip"

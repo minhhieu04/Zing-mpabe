@@ -33,7 +33,9 @@ const Public = () => {
           <div
             className={`h-[70px] ${
               scrollTop ? "bg-transparent" : "bg-main-300"
-            }  fixed top-0 left-[240px] right-[329px] z-[50] px-[59px] flex items-center`}
+            }  fixed top-0 left-[240px] ${
+              isShowSidebarRight ? "1400:right-[329px] right-0" : "right-0"
+            }] z-[50] px-[59px] flex items-center`}
           >
             <Header />
           </div>
@@ -49,7 +51,7 @@ const Public = () => {
           </div>
         </div>
         {isShowSidebarRight && (
-          <div className="w-[329px] hidden 1600:flex flex-none animate-slide-left">
+          <div className="w-[329px] hidden 1400:flex flex-none animate-slide-left">
             <SidebarRight />{" "}
           </div>
         )}

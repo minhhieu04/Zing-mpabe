@@ -25,7 +25,7 @@ const SectionItem = ({ item }) => {
         navigate(item?.link?.split(".")[0], { state: { playAlbum: false } });
       }}
       key={item.encodeId}
-      className="flex flex-col gap-3 text-sm justify-start w-1/5 p-4 cursor-pointer"
+      className="flex flex-col gap-3 text-sm justify-start flex-1 p-4 cursor-pointer"
     >
       <div
         onMouseEnter={handleHover}
