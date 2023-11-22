@@ -27,6 +27,8 @@ function App() {
   // tham số state: Đại diện cho các giá trị trong store mà trước đó mình lưu trữ
   const dispatch = useDispatch();
   const [weekChart, setWeekChart] = useState(null);
+  // get first time the width
+  const [currentWidth, setCurrentWidth] = useState(window.innerHeight);
 
   useEffect(() => {
     dispatch(actions.getHome());
@@ -36,6 +38,24 @@ function App() {
     };
     fetchChartData();
   }, []);
+
+  // function setWidth when resize
+  const setWidth = (e) => {
+    setCurrentWidth(e.target.innerHeight);
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", setWidth);
+    return () => {
+      window.removeEventListener("resize", setWidth);
+    };
+  }, []);
+
+  // Pass the width to the pages
+  // useEffect(() => {
+  //   dispatch.actions.setCurrentWidth(currentWidth);
+  // }, [currentWidth]);
+
   return (
     <>
       <div>

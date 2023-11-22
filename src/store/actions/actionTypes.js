@@ -5,6 +5,7 @@ const actionTypes = {
   SET_CUR_ALBUM_ID: "SET_CUR_ALBUM_ID",
   SET_RECENT_SONG: "SET_RECENT_SONG",
   SEARCH: "SEARCH",
+  CURRENT_WIDTH: "CURRENT_WIDTH",
 
   //music:
   PLAY: "PLAY",
