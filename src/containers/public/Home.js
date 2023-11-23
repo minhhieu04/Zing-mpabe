@@ -20,14 +20,23 @@ const Home = () => {
     weekChart,
     top100,
   } = useSelector((state) => state.app);
+  console.log({
+    section1,
+    section2,
+    section3,
+    section4,
+    section5,
+    weekChart,
+    top100,
+  });
   return (
     <>
-      {section1 &&
-      section2 &&
-      section3 &&
-      section4 &&
-      section5 &&
-      weekChart &&
+      {section1 ||
+      section2 ||
+      section3 ||
+      section4 ||
+      section5 ||
+      weekChart ||
       top100 ? (
         <div className="overflow-y-auto w-full">
           <div className="w-full h-[70px]"></div>
